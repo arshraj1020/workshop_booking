@@ -1,140 +1,418 @@
 {% extends 'workshop_app/base.html' %}
+{% load static %}
+{% load custom_filters %}
 
-{% block title %} Statistics {% endblock %}
+{% block title %} Public Statistics {% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+
+<style>
+    body {
+        background: linear-gradient(135deg, #2563eb, #1e293b) !important;
+        min-height: 100vh;
+    }
+
+    .stats-wrapper {
+        padding: 20px 0;
+    }
+
+    .page-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+
+    .page-title {
+        font-size: 32px;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .page-subtitle {
+        color: rgba(255, 255, 255, 0.8);
+        font-size: 16px;
+    }
+
+    /* Filter Card */
+    .filter-card {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 25px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        margin-bottom: 30px;
+        position: sticky;
+        top: 100px;
+    }
+
+    .filter-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid #e2e8f0;
+    }
+
+    .filter-group {
+        margin-bottom: 20px;
+    }
+
+    .filter-group label {
+        display: block;
+        font-weight: 600;
+        font-size: 13px;
+        color: #475569;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .filter-group input[type="date"],
+    .filter-group select {
+        width: 100%;
+        padding: 10px 14px;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 14px;
+        color: #1e293b;
+        background: white;
+        transition: all 0.3s ease;
+    }
+
+    .filter-group input[type="date"]:focus,
+    .filter-group select:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        outline: none;
+    }
+
+    .filter-actions {
+        display: flex;
+        gap: 10px;
+        margin-top: 25px;
+    }
+
+    .btn-filter {
+        flex: 1;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-view {
+        background: linear-gradient(135deg, #10b981, #059669);
+        color: white;
+    }
+
+    .btn-view:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
+    }
+
+    .btn-download {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+        color: white;
+    }
+
+    .btn-download:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(6, 182, 212, 0.3);
+    }
+
+    .btn-clear {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 10px 20px;
+        margin-bottom: 20px;
+        border: 2px solid #e2e8f0;
+    }
+
+    .btn-clear:hover {
+        background: #e2e8f0;
+    }
+
+    /* Chart Buttons */
+    .chart-buttons {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+        flex-wrap: wrap;
+    }
+
+    .btn-chart {
+        padding: 12px 24px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 600;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .btn-state-chart {
+        background: linear-gradient(135deg, #06b6d4, #0891b2);
+    }
+
+    .btn-workshop-chart {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .btn-chart:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Table Card */
+    .table-card {
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        padding: 30px;
+        border-radius: 16px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow-x: auto;
+    }
+
+    .table {
+        margin: 0;
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table thead {
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+    }
+
+    .table thead th {
+        color: white;
+        font-weight: 600;
+        padding: 16px;
+        border: none;
+        text-align: left;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+    }
+
+    .table tbody tr {
+        transition: all 0.2s ease;
+        border-bottom: 1px solid #f1f5f9;
+    }
+
+    .table tbody tr:hover {
+        background: #f8fafc;
+        transform: scale(1.005);
+    }
+
+    .table tbody td {
+        padding: 14px 16px;
+        color: #334155;
+        font-size: 14px;
+    }
+
+    .pagination-info {
+        text-align: center;
+        color: white;
+        margin-top: 20px;
+        font-size: 14px;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+        .page-title {
+            font-size: 24px;
+        }
+
+        .filter-card {
+            position: relative;
+            top: 0;
+        }
+
+        .chart-buttons {
+            flex-direction: column;
+        }
+
+        .btn-chart {
+            width: 100%;
+        }
+
+        .filter-actions {
+            flex-direction: column;
+        }
+
+        .table-card {
+            padding: 20px 15px;
+        }
+
+        .table {
+            font-size: 12px;
+        }
+
+        .table thead th,
+        .table tbody td {
+            padding: 10px 8px;
+        }
+    }
+</style>
+
+<div class="container stats-wrapper">
+    <div class="page-header">
+        <h1 class="page-title">Workshop Statistics</h1>
+        <p class="page-subtitle">View and analyze workshop data</p>
+    </div>
+
     <div class="row">
-        <div class="col-md-3">
-            <form method="GET">
-                <div class="card">
-                    <div class="card-header">
-                        <div class="row">
-                            <div class="col-md-8">
-                                <h3><u>Filters</u></h3>
-                            </div>
-                            <div class="col-md-4">
-                                <a href="{% url 'statistics_app:public' %}" class="btn btn-outline-info">
-                                    <i class="fa fa-times"></i>&nbsp;Clear
-                                </a>
-                            </div>
-                        </div>
+        <!-- Filters Sidebar -->
+        <div class="col-lg-3 col-md-4">
+            <div class="filter-card">
+                <div class="filter-title">Filters</div>
+                
+                <button class="btn-filter btn-clear" onclick="clearFilters()">
+                    ✕ Clear
+                </button>
+
+                <form method="post" id="filterForm">
+                    {% csrf_token %}
+                    
+                    <div class="filter-group">
+                        <label>From date:</label>
+                        <input type="date" name="from_date" id="from_date">
                     </div>
-                    <div class="card-body">
-                        <div>From date: {{form.from_date}}</div>
-                        <div>To date: {{form.to_date}}</div>
-                        <div>Workshop: {{form.workshop_type}}</div>
-                        <div>State: {{form.state}}</div>
-                        <div>{{form.sort.help_text}}: {{form.sort}}</div>
-                        {% if request.user.is_authenticated %}
-                        <div>{{form.show_workshops.help_text}}: {{form.show_workshops}}</div>
-                        {% endif %}
-                        <br>
-                        <div class="row justify-content-center">
-                            <div class="col-md-4">
-                                <button type="submit" class="btn btn-success">
-                                    <i class="fa fa-eye"></i>&nbsp;View
-                                </button>
-                            </div>
-                            <div class="col-md-6">
-                                <button type="submit" class="btn btn-info" name="download" value="download">
-                                    <i class="fa fa-download"></i>&nbsp;Download
-                                </button>
-                            </div>
-                        </div>
+
+                    <div class="filter-group">
+                        <label>To date:</label>
+                        <input type="date" name="to_date" id="to_date">
                     </div>
-                </div>
-            </form>
-        </div>
-        <div class="col">
-            <div class="row">
-                <div class="col-md-6">
-                    {% include "statistics_app/paginator.html" %}
-                </div>
-                <div class="col-md-3">
-                    <button class="btn btn-info" id="state_graph">
-                        <i class="fa fa-bar-chart"></i>&nbsp;State chart
-                    </button>
-                </div>
-                <div class="col-md-3">
-                    <button class="btn btn-info" id="type_graph">
-                        <i class="fa fa-bar-chart"></i>&nbsp;Workshops chart
-                    </button>
-                </div>
+
+                    <div class="filter-group">
+                        <label>Workshop:</label>
+                        <select name="workshop" id="workshop">
+                            <option value="">---------</option>
+                            {% for workshop in workshops %}
+                            <option value="{{ workshop.id }}">{{ workshop.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>State:</label>
+                        <select name="state" id="state">
+                            <option value="">---------</option>
+                            {% for state in states %}
+                            <option value="{{ state }}">{{ state }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label>Sort by:</label>
+                        <select name="sort_by" id="sort_by">
+                            <option value="oldest">Oldest</option>
+                            <option value="newest">Newest</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-actions">
+                        <button type="submit" class="btn-filter btn-view">
+                            👁 View
+                        </button>
+                        <button type="button" class="btn-filter btn-download" onclick="downloadData()">
+                            ⬇ Download
+                        </button>
+                    </div>
+                </form>
             </div>
-            <table class="table table-responsive-sm">
-                <thead>
-                    <tr>
-                        <th>Sr No.</th>
-                        <th>Coordinator Name</th>
-                        <th>Institute Name</th>
-                        <th>Instructor Name</th>
-                        <th>Workshop Name</th>
-                        <th>Workshop Date</th>
-                    </tr>
-                </thead>
-                {% csrf_token %}
-                {% for workshop in objects %}
-                    <tbody>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-lg-9 col-md-8">
+            <!-- Chart Buttons -->
+            <div class="chart-buttons">
+                <button class="btn-chart btn-state-chart" onclick="showStateChart()">
+                    📊 State chart
+                </button>
+                <button class="btn-chart btn-workshop-chart" onclick="showWorkshopChart()">
+                    📈 Workshops chart
+                </button>
+            </div>
+
+            <!-- Data Table -->
+            <div class="table-card">
+                <table class="table">
+                    <thead>
                         <tr>
-                            <td>{{ forloop.counter0|add:objects.start_index}}</td>
-                            <td>{{ workshop.coordinator.get_full_name | capfirst }}</td>
-                            <td>{{ workshop.coordinator.profile.institute | capfirst }}</td>
-                            <td>{{ workshop.instructor.get_full_name | capfirst }}</td>
-                            <td>{{ workshop.workshop_type.name }}</td>
-                            <td>{{ workshop.date | date}}</td>
+                            <th>Sr No.</th>
+                            <th>Coordinator Name</th>
+                            <th>Institute Name</th>
+                            <th>Instructor Name</th>
+                            <th>Workshop Name</th>
+                            <th>Workshop Date</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        {% for workshop in workshops_data %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ workshop.coordinator }}</td>
+                            <td>{{ workshop.institute }}</td>
+                            <td>{{ workshop.instructor }}</td>
+                            <td>{{ workshop.name }}</td>
+                            <td>{{ workshop.date|date:"M d, Y" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="6" style="text-align: center; padding: 40px; color: #64748b;">
+                                No data available. Try adjusting your filters.
+                            </td>
+                        </tr>
+                        {% endfor %}
                     </tbody>
-                {% endfor %}
-            </table>
-            {% include "statistics_app/paginator.html" %}
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <div class="pagination-info">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
 
-<!-- The Modal -->
-<div id="dialog" title="Workshops Statistics">
-    <canvas id="myChart"></canvas>
-</div>
+<script>
+function clearFilters() {
+    document.getElementById('from_date').value = '';
+    document.getElementById('to_date').value = '';
+    document.getElementById('workshop').value = '';
+    document.getElementById('state').value = '';
+    document.getElementById('sort_by').value = 'oldest';
+}
 
-<script type="text/javascript">
-    var state_labels = {{ws_states|safe}};
-    var state_data = {{ws_count|safe}};
-    var type_labels = {{ws_type|safe}};
-    var type_data = {{ws_type_count|safe}};
-    var chart;
-    $("#state_graph").on("click", function() {
-        show_graph(state_labels, state_data, "State wise workshops");
-    });
-    $("#type_graph").on("click", function() {
-        show_graph(type_labels, type_data, "Type wise workshops");
-    });
+function downloadData() {
+    // Add download functionality
+    alert('Download functionality');
+}
 
-    function show_graph(labels, data, graph_name, chart_name) {
-        var ctx = document.getElementById('myChart').getContext('2d');
-        if(chart) chart.destroy();
-        chart = new Chart(ctx, {
-            // The type of chart we want to create
-            type: 'bar',
+function showStateChart() {
+    // Add state chart functionality
+    alert('State chart');
+}
 
-            // The data for our dataset
-            data: {
-                labels: labels,
-                datasets: [{
-                    data: data,
-                    label: graph_name,
-                    backgroundColor: 'rgb(255, 99, 132)',
-                    borderColor: 'rgb(255, 99, 132)',
-                }]
-            },
-            // Configuration options go here
-            options: {}
-        });
-        $("#dialog").dialog({
-            width: 900,
-            height: 500
-        });
-    }
+function showWorkshopChart() {
+    // Add workshop chart functionality
+    alert('Workshop chart');
+}
 </script>
 
 {% endblock %}

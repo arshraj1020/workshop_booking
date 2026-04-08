@@ -8,104 +8,360 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{URL_ROOT}}/static/workshop_app/js/bootstrap-3.3.7.min.js"></script>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-	  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 
-	<script type="text/javascript">
-		$(function() {
-			    $( "fieldset" ).controlgroup();
-		});
+    <style>
+        /* Page Background */
+        body {
+            background: linear-gradient(135deg, #2563eb, #1e293b) !important;
+            min-height: 100vh;
+        }
 
-		$(document).ready(function() {
-		$('input[type=radio]').change(function() {
-			        if (this.value == "CP") {
-			        	var ielem = document.getElementById('instructor_data');
-			        	var celem = document.getElementById('coordinator_data');
-			        	ielem.style.display = "none";
-			        	celem.style.display = "table";
-			            }
-			        else{
-			        	var ielem = document.getElementById('instructor_data');
-			        	var celem = document.getElementById('coordinator_data');
-			        	ielem.style.display = "table";
-			        	celem.style.display = "none";
-			        }
-		});
-	});
-	</script>
+        .base-content {
+            padding-top: 100px;
+            padding-bottom: 80px;
+        }
+
+        /* Page Title */
+        .page-title {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Radio Button Card */
+        .radio-card {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 25px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 30px;
+        }
+
+        .radio-card fieldset {
+            border: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .radio-options {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid #e2e8f0;
+            background: #f8fafc;
+        }
+
+        .radio-option:hover {
+            border-color: #3b82f6;
+            background: #eff6ff;
+        }
+
+        .radio-option input[type="radio"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .radio-option label {
+            margin: 0;
+            font-weight: 600;
+            color: #334155;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        /* Table Container */
+        .table-container {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            overflow-x: auto;
+        }
+
+        /* Table Styling */
+        .table {
+            margin: 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        .table thead th {
+            color: white;
+            font-weight: 600;
+            padding: 16px;
+            border: none;
+            text-align: left;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+        }
+
+        .table tbody tr {
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .table tbody tr:hover {
+            background: #f8fafc;
+            transform: scale(1.01);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .table tbody td {
+            padding: 14px 16px;
+            color: #334155;
+            font-size: 14px;
+            vertical-align: middle;
+        }
+
+        .table tbody td:first-child {
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .table tbody td a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .table tbody td a:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+
+        .empty-state svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #475569;
+            margin-bottom: 8px;
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .page-title {
+                font-size: 24px;
+                margin-bottom: 25px;
+            }
+
+            .radio-card {
+                padding: 20px;
+            }
+
+            .radio-options {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .radio-option {
+                width: 100%;
+            }
+
+            .table-container {
+                padding: 20px 15px;
+            }
+
+            .table {
+                font-size: 13px;
+            }
+
+            .table thead th,
+            .table tbody td {
+                padding: 12px 10px;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .table-container {
+            animation: fadeIn 0.5s ease-out;
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function() {
+            $("fieldset").controlgroup();
+        });
+
+        $(document).ready(function() {
+            $('input[type=radio]').change(function() {
+                if (this.value == "CP") {
+                    var ielem = document.getElementById('instructor_data');
+                    var celem = document.getElementById('coordinator_data');
+                    ielem.style.display = "none";
+                    celem.style.display = "block";
+                } else {
+                    var ielem = document.getElementById('instructor_data');
+                    var celem = document.getElementById('coordinator_data');
+                    ielem.style.display = "block";
+                    celem.style.display = "none";
+                }
+            });
+        });
+    </script>
 {% endblock %}
 
-
 {% block content %}
-	<div class="container">
-	 	<div class="row">
-			<div class="col-md-6" align="left" >
-				  <fieldset data-mini="true">
-				    <label for="radio-1">Instructor Statistics </label>
-				    <input type="radio" name="radio-1" id="radio-1" value="IP">
-				    <label for="radio-2">Coordinator Statistics</label>
-				    <input type="radio" name="radio-1" id="radio-2" value="CP">
-				  </fieldset>
-			</div>
-			<br>
-			<br>
-			<!-- Instructor Data Table -->
-				<table class="table" id="instructor_data" style="display: none">
-					<thead>
-						<tr>
-							<th></th>
-							<th>username</th>
-							<th>Full Name</th>
-							<th>Institute Name</th>
-							<th>Phone Number</th>
-							<th>Workshop Count</th>
-						</tr>
-					</thead>
-					{% csrf_token %}
-					{% for profile_data in instructor_data %}
-						<tbody>
-							<tr>
-								<td>{{ forloop.counter}}</td>
-								<td>{{ profile_data.profile.user}}</td>
-								<td>{{ profile_data.profile.user.first_name}} {{ profile_data.profile.user.last_name}}</td>
-								<td>{{ profile_data.profile.institute}}</td>
-								<td>{{ profile_data.profile.phone_number}}</td>
-								<td>{{ profile_data.count}}</td>
-							</tr>
-						</tbody>
-					{% endfor %}
-				</table>
+    <div class="container">
+        <div class="page-title">Profile Statistics</div>
+        
+        <div class="row">
+            <div class="col-12">
+                <!-- Radio Selection Card -->
+                <div class="radio-card">
+                    <fieldset data-mini="true">
+                        <div class="radio-options">
+                            <div class="radio-option">
+                                <input type="radio" name="radio-1" id="radio-1" value="IP">
+                                <label for="radio-1">Instructor Statistics</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="radio-1" id="radio-2" value="CP">
+                                <label for="radio-2">Coordinator Statistics</label>
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
 
-			<!-- Coordinator Data Table -->
-				<table class="table" id="coordinator_data" style="display: none">
-					<thead>
-						<tr>
-							<th></th>
-							<th>Name</th>
-							<th>Institute Name</th>
-							<th>Phone Number</th>
-							<th>Registration Date</th>
-							<th>Workshop Count</th>
-						</tr>
-					</thead>
-					{% csrf_token %}
-					{% for profile_data in coordinator_data %}
-						<tbody>
-					{% if profile_data.count > 0 %}
-							<tr>
-								<td>{{ forloop.counter }}</td>
-								<td><a href="{{ URL_ROOT }}/view_comment_profile/{{ profile_data.profile.user.id }}">
-								{{ profile_data.profile.user.get_full_name }}</a></td>
-								<td>{{ profile_data.profile.institute}}</td>
-								<td>{{ profile_data.profile.phone_number}}</td>
-								<td>{{ profile_data.profile.user.date_joined | date}}</td>
-								<td>{{ profile_data.count}}</td>
-							</tr>
-					{% endif %}
-						</tbody>
-					{% endfor %}
-				</table>
-		</div>
-	</div>
+                <!-- Instructor Data Table -->
+                <div class="table-container" id="instructor_data" style="display: none">
+                    {% if instructor_data %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Full Name</th>
+                                <th>Institute Name</th>
+                                <th>Phone Number</th>
+                                <th>Workshop Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% csrf_token %}
+                            {% for profile_data in instructor_data %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ profile_data.profile.user }}</td>
+                                <td>{{ profile_data.profile.user.first_name }} {{ profile_data.profile.user.last_name }}</td>
+                                <td>{{ profile_data.profile.institute }}</td>
+                                <td>{{ profile_data.profile.phone_number }}</td>
+                                <td>{{ profile_data.count }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="empty-state">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3>No Instructor Data</h3>
+                        <p>There are no instructor statistics available at the moment</p>
+                    </div>
+                    {% endif %}
+                </div>
 
+                <!-- Coordinator Data Table -->
+                <div class="table-container" id="coordinator_data" style="display: none">
+                    {% if coordinator_data %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Institute Name</th>
+                                <th>Phone Number</th>
+                                <th>Registration Date</th>
+                                <th>Workshop Count</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% csrf_token %}
+                            {% for profile_data in coordinator_data %}
+                            {% if profile_data.count > 0 %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>
+                                    <a href="{{ URL_ROOT }}/view_comment_profile/{{ profile_data.profile.user.id }}">
+                                        {{ profile_data.profile.user.get_full_name }}
+                                    </a>
+                                </td>
+                                <td>{{ profile_data.profile.institute }}</td>
+                                <td>{{ profile_data.profile.phone_number }}</td>
+                                <td>{{ profile_data.profile.user.date_joined|date }}</td>
+                                <td>{{ profile_data.count }}</td>
+                            </tr>
+                            {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="empty-state">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                        </svg>
+                        <h3>No Coordinator Data</h3>
+                        <p>There are no coordinator statistics available at the moment</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

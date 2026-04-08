@@ -1,19 +1,63 @@
+css
 /**
- * Footer Styles
+ * Base CSS for FOSSEE Workshops
  */
+
+/* Navbar */
 .navbar {
     z-index: 1000;
 }
+
+/* Footer */
 .footer {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #61615F;
+    background-color: #475569;
     color: white;
     text-align: center;
     z-index: 100;
+    padding: 15px 0;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
+
+/* Base Content Area */
 .base-content {
     padding-top: 5em;
     padding-bottom: 5em;
+    min-height: calc(100vh - 120px);
+}
+
+/* Smooth Scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Global Text Selection */
+::selection {
+    background: #3b82f6;
+    color: white;
+}
+
+/* Remove default focus outline and add custom */
+*:focus {
+    outline: none;
+}
+
+/* Scrollbar Styling (Optional - for webkit browsers) */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }
