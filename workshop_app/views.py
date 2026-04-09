@@ -172,13 +172,23 @@ def user_register(request):
 def workshop_status_coordinator(request):
     """ Workshops proposed by Coordinator """
     user = request.user
+
     if is_instructor(user):
         return redirect(get_landing_page(user))
-    workshops = Workshop.objects.filter(
-        coordinator=user.id
-    ).order_by('-date')
-    return render(request, 'workshop_app/workshop_status_coordinator.html',
-                  {"workshops": workshops})
+
+    # 🔥 FIX
+    if user.is_superuser:
+        workshops = Workshop.objects.all().order_by('-date')
+    else:
+        workshops = Workshop.objects.filter(
+            coordinator=user
+        ).order_by('-date')
+
+    return render(
+        request,
+        'workshop_app/workshop_status_coordinator.html',
+        {"workshops": workshops}
+    )
 
 
 @login_required
@@ -270,44 +280,35 @@ def propose_workshop(request):
     """Coordinator proposed a workshop and date"""
 
     user = request.user
-    if user.is_superuser:
-        return redirect("/admin")
+
     if is_instructor(user):
         return redirect(get_landing_page(user))
-    else:
-        form = WorkshopForm()
-        if request.method == 'POST':
-            form = WorkshopForm(request.POST)
-            if form.is_valid():
-                form_data = form.save(commit=False)
-                form_data.coordinator = user
-                # Avoiding Duplicate workshop entries for same date and workshop_title
-                if Workshop.objects.filter(
-                        date=form_data.date,
-                        workshop_type=form_data.workshop_type,
-                        coordinator=form_data.coordinator
-                ).exists():
-                    return redirect(get_landing_page(user))
-                else:
-                    form_data.save()
-                    instructors = Profile.objects.filter(position='instructor')
-                    for i in instructors:
-                        send_email(request, call_on='Proposed Workshop',
-                                   user_position='instructor',
-                                   workshop_date=str(form_data.date),
-                                   workshop_title=form_data.workshop_type,
-                                   user_name=user.get_full_name(),
-                                   other_email=i.user.email,
-                                   phone_number=user.profile.phone_number,
-                                   institute=user.profile.institute
-                                   )
-                    messages.add_message(request, messages.SUCCESS, "Workshop proposed successfully")
-                    return redirect(get_landing_page(user))
-        # GET request
-        return render(
-            request, 'workshop_app/propose_workshop.html',
-            {"form": form}
-        )
+
+    form = WorkshopForm()
+
+    if request.method == 'POST':
+        form = WorkshopForm(request.POST)
+        if form.is_valid():
+            form_data = form.save(commit=False)
+            form_data.coordinator = user
+
+            if Workshop.objects.filter(
+                date=form_data.date,
+                workshop_type=form_data.workshop_type,
+                coordinator=form_data.coordinator
+            ).exists():
+                return redirect(get_landing_page(user))
+
+            form_data.save()
+
+            messages.success(request, "Workshop proposed successfully")
+            return redirect(get_landing_page(user))
+
+    return render(
+        request,
+        'workshop_app/propose_workshop.html',
+        {"form": form}
+    )
 
 
 @login_required
