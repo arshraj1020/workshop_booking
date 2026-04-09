@@ -1,32 +1,133 @@
 {% extends 'workshop_app/base.html' %}
 
 {% block title %}
-    View Workshop details
+View Workshop details
+{% endblock %}
+
+{% block extra %}
+<style>
+body {
+    background: linear-gradient(135deg, #4f46e5, #2563eb);
+}
+
+/* Wrapper same as other pages */
+.details-wrapper {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 0 15px;
+}
+
+/* Glass card */
+.details-card {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    border-radius: 18px;
+    padding: 25px;
+    color: white;
+}
+
+/* Title */
+.details-title {
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+/* Each row */
+.detail-item {
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Label */
+.detail-label {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* Value */
+.detail-value {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+/* Button */
+.back-btn {
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 8px;
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: rgba(255,255,255,0.35);
+}
+
+/* 📱 Mobile */
+@media (max-width: 768px) {
+    .details-title {
+        font-size: 22px;
+    }
+
+    .detail-value {
+        font-size: 15px;
+    }
+}
+
+</style>
 {% endblock %}
 
 {% block content %}
-    <div class="container">
-        <h2 class="text-center m-3">Workshop Details</h2>
-        <table class="table table-hover">
-            <tr class="d-flex">
-                <th class="col-3">Workshop Name :</th>
-                <td class="col">{{ workshop_type.name }}</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-3">Duration :</th>
-                <td class="col">{{ workshop_type.duration }} day(s)</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-3">Description :</th>
-                <td class="col">{{ workshop_type.description }}</td>
-            </tr>
-            <tr class="d-flex">
-                <th class="col-3">Terms and Conditions :</th>
-                <td class="col">{{ workshop_type.terms_and_conditions }}</td>
-            </tr>
-        </table>
+
+<div class="container">
+
+    <div class="details-wrapper">
+
+        <div class="details-card">
+
+            <div class="details-title">
+                Workshop Details
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-label">Workshop Name</div>
+                <div class="detail-value">{{ workshop_type.name }}</div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-label">Duration</div>
+                <div class="detail-value">{{ workshop_type.duration }} day(s)</div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-label">Description</div>
+                <div class="detail-value">
+                    {{ workshop_type.description|default:"No description available" }}
+                </div>
+            </div>
+
+            <div class="detail-item">
+                <div class="detail-label">Terms and Conditions</div>
+                <div class="detail-value">
+                    {{ workshop_type.terms_and_conditions|default:"Not provided" }}
+                </div>
+            </div>
+
+            <a href="{% url 'workshop_app:workshop_type_list' %}" class="back-btn">
+                ← Back to Workshops
+            </a>
+
+        </div>
+
     </div>
 
+</div>
+
 {% endblock %}
-
-
