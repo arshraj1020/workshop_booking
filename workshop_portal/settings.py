@@ -164,7 +164,10 @@ SHOW_WORKSHOP_STATS = True
 # Create a CMS page as a home page and give the page title here
 HOME_PAGE_TITLE = "home-page-title"
 
-LOGIN_REDIRECT_URL = '/workshop/login'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+LOGIN_URL = '/workshop/login/'
+LOGIN_REDIRECT_URL = '/workshop/status'
+LOGOUT_REDIRECT_URL = '/workshop/login'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_AGE = 3600

@@ -1,152 +1,101 @@
 {% extends "workshop_app/base.html" %}
 
 {% block title %}
-    My Workshops
+Dashboard
 {% endblock %}
 
-{% block extra-custom-scripts %}
+{% block extra %}
 <style>
     body {
-        background: #f9fafb;
+        margin: 0;
+        font-family: 'Segoe UI', sans-serif;
+        background: linear-gradient(135deg, #4f46e5, #2563eb);
+        min-height: 100vh;
     }
 
-    .dashboard-container {
-        max-width: 1100px;
+    .dashboard {
+        max-width: 900px;
         margin: auto;
-        padding: 20px;
+        padding: 60px 20px;
+        text-align: center;
+        color: white;
     }
 
-    .welcome-card {
-        background: #ffffff;
-        padding: 30px;
-        border-radius: 12px;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        margin-bottom: 30px;
-    }
-
-    .welcome-title {
-        font-size: 28px;
+    .welcome {
+        font-size: 32px;
         font-weight: 600;
     }
 
-    .welcome-text {
-        color: #6b7280;
+    .subtitle {
         margin-top: 10px;
+        opacity: 0.9;
     }
 
-    .section-title {
-        font-size: 20px;
-        font-weight: 600;
-        margin: 30px 0 15px;
+    .cards {
+        margin-top: 50px;
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
-    .custom-table {
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    .card {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 16px;
+        width: 250px;
+        transition: 0.3s;
+        cursor: pointer;
     }
 
-    .custom-table th {
-        background: #f3f4f6;
-        font-weight: 600;
+    .card:hover {
+        transform: translateY(-5px);
+        background: rgba(255,255,255,0.2);
     }
 
-    .badge-success {
-        background-color: #22c55e;
+    .card h3 {
+        margin-bottom: 10px;
     }
 
-    .badge-warning {
-        background-color: #f59e0b;
-    }
-
-    @media (max-width: 768px) {
-        .welcome-title {
-            font-size: 22px;
-        }
-
-        table {
-            font-size: 12px;
-        }
+    .card a {
+        text-decoration: none;
+        color: white;
+        font-weight: 500;
     }
 </style>
 {% endblock %}
 
 {% block content %}
-<div class="dashboard-container">
 
-    <!-- 🔥 Welcome Section -->
-    <div class="welcome-card">
-        <div class="welcome-title">Welcome {{ user.first_name }} 👋</div>
-        <div class="welcome-text">
-            Manage your workshops here. You can also propose a new workshop from the
-            <strong>Propose Workshop</strong> tab.
-        </div>
+<div class="dashboard">
+
+    <div class="welcome">
+        Welcome {{ user.username }} 👋
     </div>
 
-    {% if workshops %}
+    <div class="subtitle">
+        Manage your workshops here. You can also propose a new workshop.
+    </div>
 
-        <!-- ✅ Accepted Workshops -->
-        <div class="section-title">Workshops Accepted</div>
-        <div class="custom-table">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>Workshop</th>
-                        <th>Instructor</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for workshop in workshops %}
-                    {% if workshop.status %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'workshop_app:workshop_details' workshop.id %}">
-                                {{ workshop.workshop_type|capfirst }}
-                            </a>
-                        </td>
-                        <td>{{ workshop.instructor.get_full_name }}</td>
-                        <td>{{ workshop.date|date }}</td>
-                        <td><span class="badge badge-success">{{ workshop.get_status }}</span></td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
+    <div class="cards">
+
+        <div class="card">
+            <h3> Propose Workshop</h3>
+            <a href="{% url 'workshop_app:propose_workshop' %}">
+                Create a new workshop
+            </a>
         </div>
 
-        <!-- ✅ Proposed Workshops -->
-        <div class="section-title">Workshops Proposed By Me</div>
-        <div class="custom-table">
-            <table class="table mb-0">
-                <thead>
-                    <tr>
-                        <th>Workshop</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                {% for workshop in workshops %}
-                    {% if not workshop.status and workshop.tnc_accepted %}
-                    <tr>
-                        <td>
-                            <a href="{% url 'workshop_app:workshop_details' workshop.id %}">
-                                {{ workshop.workshop_type|capfirst }}
-                            </a>
-                        </td>
-                        <td>{{ workshop.date|date }}</td>
-                        <td><span class="badge badge-warning">{{ workshop.get_status }}</span></td>
-                    </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
+        <div class="card">
+            <h3>Types</h3>
+            <a href="{% url 'workshop_app:workshop_type_list' %}">
+                Browse workshop types
+            </a>
         </div>
 
-    {% endif %}
+    </div>
 
 </div>
+
 {% endblock %}
