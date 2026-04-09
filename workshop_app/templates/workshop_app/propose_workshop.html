@@ -20,27 +20,33 @@ Propose a workshop
     upto.setFullYear(dateToday.getFullYear() + 1);
 
     $(function () {
+
+        // ✅ DATEPICKER FIX
         $(".datepicker").datepicker({
             changeMonth: true,
             changeYear: true,
             minDate: dateToday,
             maxDate: upto,
             beforeShowDay: $.datepicker.noWeekends,
+            dateFormat: "yy-mm-dd"
         });
 
+        // ✅ T&C MODAL FIX
         $('#disp_tnc').click(function (e) {
-            e.preventDefault()
-            if ($('#id_workshop_type').val() === '')
-                $('.modal-body').html("<p class='text-danger'>Please select a workshop type</p>")
-            else {
+            e.preventDefault();
+
+            if ($('#id_workshop_type').val() === '') {
+                $('.modal-body').html("<p class='text-danger'>Please select a workshop type</p>");
+            } else {
                 $.ajax({
                     url: '/workshop/type_tnc/' + $('#id_workshop_type').val(),
                     success: function (data) {
-                        $('.modal-body').html(data.tnc)
+                        $('.modal-body').html(data.tnc);
                     }
-                })
+                });
             }
-        })
+        });
+
     });
 </script>
 {% endblock %}

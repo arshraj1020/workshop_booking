@@ -1,4 +1,5 @@
 from string import punctuation, digits
+from datetime import date, timedelta
 
 from django import forms
 from django.utils import timezone
@@ -142,15 +143,31 @@ class WorkshopForm(forms.ModelForm):
     class Meta:
         model = Workshop
         exclude = ['status', 'instructor', 'coordinator']
+
+
         widgets = {
-            'date': forms.DateInput(attrs={
-                'class': 'datepicker form-control', 'placeholder': 'Workshop Date'}),
-            'workshop_type': forms.Select(attrs={
-                'class': 'form-control'}),
-            'tnc_accepted': forms.CheckboxInput(attrs={
-                'class': 'form-check-input'
-            })
+            'date': forms.DateInput(
+                format='%Y-%m-%d',
+                attrs={
+                    'class': 'form-control',
+                    'type': 'date',
+                    'min': (date.today() + timedelta(days=3)).isoformat()
+                }
+            ),
+
+            'workshop_type': forms.Select(
+                attrs={
+                    'class': 'form-control'
+                }
+            ),
+
+            'tnc_accepted': forms.CheckboxInput(
+                attrs={
+                    'class': 'form-check-input'
+                }
+            )
         }
+
 
 
 class CommentsForm(forms.ModelForm):
