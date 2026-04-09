@@ -1,18 +1,102 @@
 {% extends 'workshop_app/base.html' %}
 
-	{% block title %}
-		Logged out
-	{% endblock %}
+{% block title %}
+Logout
+{% endblock %}
 
+{% block content %}
 
-	{% block content %}
-		<div class="container" align="center">
-			<br>
-			<h3>You have logged out successfully.</h3>
-			<h4>If you want to login again please
-				<a href="/">click here</a>
-			</h4>
-			<br>
-		</div>
+<style>
+    body {
+        background: linear-gradient(135deg, #2563eb, #1e293b);
+        min-height: 100vh;
+    }
 
-	{% endblock %}
+    .logout-wrapper {
+        min-height: 90vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 40px 10px;
+    }
+
+    .logout-card {
+        background: rgba(255, 255, 255, 0.98);
+        padding: 50px 40px;
+        border-radius: 20px;
+        text-align: center;
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+        animation: fadeUp 0.5s ease;
+    }
+
+    @keyframes fadeUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .logout-icon {
+        font-size: 50px;
+        margin-bottom: 20px;
+    }
+
+    .logout-title {
+        font-size: 26px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 10px;
+    }
+
+    .logout-text {
+        color: #64748b;
+        margin-bottom: 30px;
+        font-size: 15px;
+    }
+
+    .btn-login {
+        display: inline-block;
+        padding: 12px 25px;
+        background: linear-gradient(135deg, #3b82f6, #2563eb);
+        color: white;
+        border-radius: 10px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+        box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+    }
+
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    }
+</style>
+
+<div class="logout-wrapper">
+    <div class="logout-card">
+
+        <div class="logout-icon">👋</div>
+
+        <div class="logout-title">
+            Logged out successfully
+        </div>
+
+        <div class="logout-text">
+            You’ve been safely logged out.<br>
+            See you again soon!
+        </div>
+
+        <a href="{% url 'workshop_app:login' %}" class="btn-login">
+            Login Again
+        </a>
+
+    </div>
+</div>
+
+{% endblock %}

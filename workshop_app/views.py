@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.forms import inlineformset_factory, model_to_dict
 from django.http import JsonResponse, Http404
 from django.urls import reverse
+from django.contrib.auth import logout
 
 try:
     from StringIO import StringIO as string_io
@@ -70,12 +71,10 @@ def index(request):
 
 # TODO: Forgot password workflow
 def user_login(request):
-    """User Login"""
     user = request.user
+
     if user.is_superuser:
         return redirect('/admin')
-    if user.is_authenticated:
-        return redirect(get_landing_page(user))
 
     if request.method == "POST":
         form = UserLoginForm(request.POST)
@@ -87,10 +86,10 @@ def user_login(request):
             else:
                 return render(request, 'workshop_app/activation.html')
         else:
-            return render(request, 'workshop_app/login.html', {"form": form})
+            return render(request, 'workshop_app/login.html', {'form': form})
     else:
         form = UserLoginForm()
-        return render(request, 'workshop_app/login.html', {"form": form})
+        return render(request, 'workshop_app/login.html', {'form': form})
 
 
 def user_logout(request):
@@ -129,9 +128,12 @@ def activate_user(request, key=None):
 
     user.is_email_verified = True
     user.save()
+
+    logout(request)
+
     status = "0"
     return render(request, 'workshop_app/activation.html',
-                  {"status": status})
+                {"status": status})
 
 
 def user_register(request):
@@ -141,8 +143,7 @@ def user_register(request):
         if form.is_valid():
             username, password, key = form.save()
             new_user = authenticate(username=username, password=password)
-            login(request, new_user)
-            user_position = request.user.profile.position
+            user_position = new_user.profile.position
             send_email(
                 request, call_on='Registration',
                 user_position=user_position,

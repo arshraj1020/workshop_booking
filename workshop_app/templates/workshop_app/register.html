@@ -348,7 +348,12 @@
 
         <form method="post">
             {% csrf_token %}
-
+            {{ form.non_field_errors }}
+            {% if form.errors %}
+                <div class="errorlist">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
             <div class="field-group">
                 <div class="form-section-title">Account Information</div>
 
@@ -452,8 +457,8 @@
                 <!-- SOURCE -->
                 <div class="form-group">
                     <label class="required">How did you hear about us?</label>
-                    {{ form.source }}
-                    {{ form.source.errors }}
+                    {{ form.how_did_you_hear_about_us }}
+                    {{ form.how_did_you_hear_about_us.errors }}
                 </div>
             </div>
 
