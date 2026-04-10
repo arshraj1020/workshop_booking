@@ -472,28 +472,61 @@ def view_profile(request, user_id):
 
 @login_required
 def view_own_profile(request):
-    """User can view own profile """
+    """User can view and update own profile"""
+
     user = request.user
-    if user.is_superuser:
-        return redirect("admin")
     profile = user.profile
+
     if request.method == 'POST':
-        form = ProfileForm(request.POST, user=user, instance=profile)
+
+        form = ProfileForm(request.POST, request.FILES, user=user, instance=profile)
+
         if form.is_valid():
-            form_data = form.save(commit=False)
-            form_data.user = user
-            form_data.user.first_name = request.POST['first_name']
-            form_data.user.last_name = request.POST['last_name']
-            form_data.user.save()
-            form_data.save()
-            messages.add_message(request, messages.SUCCESS, "Profile updated.")
+
+            # 🔥 SAVE PROFILE (but don't commit yet)
+            profile = form.save(commit=False)
+
+            # ✅ USER FIELDS
+            user.first_name = request.POST.get('first_name')
+            user.last_name = request.POST.get('last_name')
+            user.email = request.POST.get('email')   # ⭐ FIX EMAIL
+
+            # ✅ PHONE VALIDATION (10 digits)
+            phone = request.POST.get('phone_number')
+            if not phone or len(phone) != 10:
+                messages.error(request, "Phone number must be exactly 10 digits")
+                return redirect(request.path + "?edit=true")
+
+            profile.phone_number = phone
+
+            # ✅ OTHER PROFILE FIELDS
+            profile.institute = request.POST.get('institute')
+            profile.location = request.POST.get('location')
+
+            # ✅ PROFILE IMAGE UPLOAD
+            if 'profile_pic' in request.FILES:
+                profile.profile_pic = request.FILES['profile_pic']
+
+            # SAVE
+            user.save()
+            profile.save()
+
+            messages.success(request, "Profile updated successfully!")
+
             return redirect(reverse("workshop_app:view_own_profile"))
+
         else:
-            messages.add_message(
-                request, messages.ERROR, "Profile update failed!"
-            )
+            messages.error(request, "Profile update failed!")
+
     else:
         form = ProfileForm(user=user, instance=profile)
 
-    return render(request, "workshop_app/view_profile.html",
-                  {"profile": profile, "Workshops": None, "form": form})
+    return render(
+        request,
+        "workshop_app/view_profile.html",
+        {
+            "profile": profile,
+            "Workshops": None,
+            "form": form
+        }
+    )

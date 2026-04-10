@@ -95,8 +95,14 @@ def attachments(instance, filename):
 
 
 class Profile(models.Model):
+    
     """Profile for users(instructors and coordinators)"""
-
+    profile_pic = models.ImageField(
+        upload_to='profile_pics/',
+        default='profile_pics/default.png',
+        blank=True,
+        null=True
+    )
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=32, blank=True, choices=title)
     institute = models.CharField(max_length=150)
