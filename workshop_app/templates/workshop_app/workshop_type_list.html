@@ -2,7 +2,7 @@
 {% load custom_filters %}
 
 {% block title %}
-View List of available Workshops
+Workshop Types
 {% endblock %}
 
 {% block extra %}
@@ -56,7 +56,7 @@ body {
     transition: 0.3s;
 }
 
-/* Button */
+/* Buttons */
 .btn-custom {
     background: rgba(255,255,255,0.2);
     border: none;
@@ -65,6 +65,7 @@ body {
     color: white;
     transition: 0.3s;
     text-decoration: none;
+    margin: 2px;
 }
 
 .btn-custom:hover {
@@ -92,7 +93,7 @@ body {
     background: rgba(255,255,255,0.35);
 }
 
-/* 📱 MOBILE TRANSFORMATION */
+/* 📱 MOBILE */
 @media (max-width: 768px) {
 
     .container-custom {
@@ -156,7 +157,8 @@ body {
         Workshop Types
     </div>
 
-    {% if request.user|has_group:"instructor" %}
+    <!-- 🔥 ADD BUTTON (ADMIN + INSTRUCTOR) -->
+    {% if request.user.is_superuser or request.user|has_group:"instructor" %}
         <a href="{% url 'workshop_app:add_workshop_type' %}" class="btn btn-light add-btn">
             + Add Workshop Type
         </a>
@@ -181,10 +183,21 @@ body {
                     <td data-label="Sr No">{{ forloop.counter }}</td>
                     <td data-label="Workshop">{{ w.name }}</td>
                     <td data-label="Duration">{{ w.duration }} days</td>
+
                     <td data-label="Action">
+
+                        <!-- VIEW -->
                         <a href="{% url 'workshop_app:workshop_type_details' w.id %}" class="btn-custom">
-                            View Details
+                            View
                         </a>
+
+                        <!-- 🔥 EDIT (ADMIN + INSTRUCTOR) -->
+                        {% if request.user.is_superuser or request.user|has_group:"instructor" %}
+                            <a href="{% url 'workshop_app:workshop_type_details' w.id %}" class="btn-custom">
+                                Edit
+                            </a>
+                        {% endif %}
+
                     </td>
                 </tr>
                 {% endfor %}

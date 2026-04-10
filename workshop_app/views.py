@@ -302,59 +302,65 @@ def propose_workshop(request):
 
 @login_required
 def workshop_type_details(request, workshop_type_id):
-    """Gives the types of workshop details """
-    user = request.user
-    if user.is_superuser:
-        return redirect("/admin")
+    """Gives the types of workshop details"""
 
     workshop_type = WorkshopType.objects.filter(id=workshop_type_id)
-    if workshop_type.exists():
-        workshop_type = workshop_type.first()
-    else:
+
+    if not workshop_type.exists():
         return redirect(reverse('workshop_app:workshop_type_list'))
 
+    workshop_type = workshop_type.first()
+
     qs = AttachmentFile.objects.filter(workshop_type=workshop_type)
+
     AttachmentFileFormSet = inlineformset_factory(
-        WorkshopType, AttachmentFile, fields=['attachments'],
-        can_delete=False, extra=(qs.count() + 1)
+        WorkshopType, AttachmentFile,
+        fields=['attachments'],
+        can_delete=False,
+        extra=(qs.count() + 1)
     )
 
-    if is_instructor(user):
+    # ✅ ALLOW BOTH ADMIN + INSTRUCTOR TO EDIT
+    if is_instructor(request.user) or request.user.is_superuser:
+
         if request.method == 'POST':
             form = WorkshopTypeForm(request.POST, instance=workshop_type)
             form_file = AttachmentFileFormSet(
                 request.POST, request.FILES, instance=form.instance
             )
+
             if form.is_valid():
                 form_data = form.save()
-                messages.add_message(
-                    request, messages.SUCCESS, "Workshop type saved."
-                )
+                messages.success(request, "Workshop type updated!")
+
                 for file in form_file:
-                    if (file.is_valid() and file.clean() and
-                            file.clean()['attachments']):
-                        if file.cleaned_data['id']:
+                    if file.is_valid() and file.cleaned_data.get('attachments'):
+                        if file.cleaned_data.get('id'):
                             file.cleaned_data['id'].delete()
                         file.save()
-                        messages.add_message(
-                            request, messages.INFO, "Attachment saved"
-                        )
+
                 return redirect(
-                    reverse('workshop_app:workshop_type_details',
-                            args=[form_data.id])
-                    )
+                    reverse('workshop_app:workshop_type_details', args=[form_data.id])
+                )
+
         else:
             form = WorkshopTypeForm(instance=workshop_type)
+
         form_file = AttachmentFileFormSet()
+
         for subform, data in zip(form_file, qs):
             subform.initial = model_to_dict(data)
+
         return render(
-            request, 'workshop_app/edit_workshop_type.html',
+            request,
+            'workshop_app/edit_workshop_type.html',
             {'form': form, 'form_file': form_file}
         )
 
+    # 👇 NORMAL USER → VIEW ONLY
     return render(
-        request, 'workshop_app/workshop_type_details.html',
+        request,
+        'workshop_app/workshop_type_details.html',
         {'workshop_type': workshop_type}
     )
 
@@ -391,8 +397,8 @@ def workshop_type_tnc(request, workshop_type_id):
 def workshop_type_list(request):
     """Gives the details for types of workshops."""
     user = request.user
-    if user.is_superuser:
-        return redirect("/admin")
+    # if user.is_superuser:
+    #     return redirect("/admin")
 
     workshop_types = WorkshopType.objects.get_queryset().order_by("id")
 
