@@ -22,6 +22,28 @@ body {
     margin-top: 40px;
 }
 
+.cards {
+    margin-top: 30px;
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 260px;
+    background: rgba(255,255,255,0.15);
+    padding: 25px;
+    border-radius: 16px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,0.25);
+}
+
 .table-box {
     margin: auto;
     margin-top: 20px;
@@ -69,6 +91,8 @@ td {
     border: none;
     padding: 6px 12px;
     border-radius: 8px;
+    color: white;
+    text-decoration: none;
 }
 
 .btn-success:hover {
@@ -81,13 +105,33 @@ td {
 
 <div class="dashboard">
 
+    <!-- ✅ HEADER -->
     <h2 style="font-weight:600;">
         Welcome {{ user.first_name|default:user.username }} 👋
     </h2>
-    
+
     <p style="opacity:0.9;">
         Manage and accept workshop requests here.
     </p>
+
+    <!-- ✅ INSTRUCTOR ACTION CARDS -->
+    <div class="cards">
+
+        <a href="{% url 'workshop_app:add_workshop_type' %}" style="text-decoration:none; color:white;">
+            <div class="card">
+                <h3>Create Workshop</h3>
+                <p>Add new workshop type</p>
+            </div>
+        </a>
+
+        <a href="{% url 'workshop_app:workshop_type_list' %}" style="text-decoration:none; color:white;">
+            <div class="card">
+                <h3>Manage Workshops</h3>
+                <p>Edit & view workshop types</p>
+            </div>
+        </a>
+
+    </div>
 
     {% if not workshops %}
         <div class="section">
