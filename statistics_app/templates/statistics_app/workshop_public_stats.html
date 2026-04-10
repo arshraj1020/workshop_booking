@@ -8,132 +8,145 @@
 
 <style>
 body {
-    background: linear-gradient(135deg, #2563eb, #1e293b) !important;
+    background: linear-gradient(135deg, #1e3a8a, #0f172a);
     min-height: 100vh;
-}
-
-.stats-wrapper {
-    padding: 20px 0;
-}
-
-.page-header {
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-.page-title {
-    font-size: 32px;
-    font-weight: 700;
     color: white;
 }
 
-.page-subtitle {
-    color: rgba(255,255,255,0.8);
+/* HEADER */
+.page-header {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-/* Filter */
-.filter-card {
+.page-title {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+/* CARD BASE */
+.card {
     background: white;
+    border-radius: 14px;
     padding: 20px;
-    border-radius: 12px;
+    margin-bottom: 25px;
+    color: black;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-.filter-group {
-    margin-bottom: 15px;
+/* KPI CARDS */
+.stat-card {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
-.filter-group input,
-.filter-group select {
+.stat-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+}
+
+.active-card {
+    border: 3px solid #22c55e;
+    transform: scale(1.05);
+}
+
+.stat-card h6 {
+    opacity: 0.85;
+    margin-bottom: 5px;
+}
+
+.stat-card h3 {
+    margin: 0;
+    font-size: 26px;
+}
+
+/* FILTER */
+.filter-card input,
+.filter-card select {
     width: 100%;
-    padding: 8px;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    border: 1px solid #ddd;
 }
 
-.btn-filter {
+.btn-main {
     width: 100%;
     margin-top: 10px;
 }
 
-/* Table */
-.table-card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
+/* CHART CONTAINER */
+.chart-container {
+    height: 350px;
 }
 
+/* TABLE */
 .table thead {
     background: #2563eb;
     color: white;
 }
+
+.table tbody tr:hover {
+    background: #f8fafc;
+}
+
+/* HINT */
+.hint-text {
+    text-align: center;
+    opacity: 0.7;
+    margin-bottom: 15px;
+}
 </style>
 
-<div class="container stats-wrapper">
+<div class="container">
 
+    <!-- HEADER -->
     <div class="page-header">
-        <h1 class="page-title">Workshop Statistics</h1>
-        <p class="page-subtitle">View and analyze workshop data</p>
+        <h1 class="page-title">Workshop Dashboard</h1>
     </div>
 
     <div class="row">
 
         <!-- FILTER -->
         <div class="col-md-3">
-            <div class="filter-card">
-
+            <div class="card filter-card">
                 <form method="GET">
 
-                    <!-- From Date -->
-                    <div class="filter-group">
-                        <label>From Date</label>
-                        <input type="date" name="from_date" value="{{ from_date }}">
-                    </div>
+                    <label>From Date</label>
+                    <input type="date" name="from_date" value="{{ from_date }}">
 
-                    <!-- To Date -->
-                    <div class="filter-group">
-                        <label>To Date</label>
-                        <input type="date" name="to_date" value="{{ to_date }}">
-                    </div>
+                    <label>To Date</label>
+                    <input type="date" name="to_date" value="{{ to_date }}">
 
-                    <!-- Workshop Type -->
-                    <div class="filter-group">
-                        <label>Workshop Type</label>
-                        <select name="workshop_type">
-                            <option value="">All</option>
-                            {% for w in all_workshop_types %}
-                                <option value="{{ w.id }}" {% if selected_type == w.id|stringformat:"s" %}selected{% endif %}>
-                                    {{ w.name }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    <label>Workshop Type</label>
+                    <select name="workshop_type">
+                        <option value="">All</option>
+                        {% for w in all_workshop_types %}
+                        <option value="{{ w.id }}">{{ w.name }}</option>
+                        {% endfor %}
+                    </select>
 
-                    <!-- State -->
-                    <div class="filter-group">
-                        <label>State</label>
-                        <select name="state">
-                            <option value="">All</option>
-                            {% for code, name in all_states %}
-                                <option value="{{ code }}" {% if selected_state == code %}selected{% endif %}>
-                                    {{ name }}
-                                </option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    <label>State</label>
+                    <select name="state">
+                        <option value="">All</option>
+                        {% for code, name in all_states %}
+                        <option value="{{ code }}">{{ name }}</option>
+                        {% endfor %}
+                    </select>
 
-                    <!-- Sort -->
-                    <div class="filter-group">
-                        <label>Sort</label>
-                        <select name="sort">
-                            <option value="date" {% if selected_sort == "date" %}selected{% endif %}>Oldest</option>
-                            <option value="-date" {% if selected_sort == "-date" %}selected{% endif %}>Newest</option>
-                        </select>
-                    </div>
+                    <label>Sort</label>
+                    <select name="sort">
+                        <option value="date">Oldest</option>
+                        <option value="-date">Newest</option>
+                    </select>
 
-                    <!-- Buttons -->
-                    <button type="submit" class="btn btn-success btn-filter">
-                        View
-                    </button>
-
-                    <button type="submit" name="download" value="1" class="btn btn-info btn-filter">
+                    <button type="submit" class="btn btn-success btn-main">View</button>
+                    <button type="submit" name="download" value="1" class="btn btn-info btn-main">
                         Download CSV
                     </button>
 
@@ -141,13 +154,60 @@ body {
             </div>
         </div>
 
-        <!-- TABLE -->
+        <!-- MAIN -->
         <div class="col-md-9">
 
-            <!-- DEBUG (remove later) -->
-            <h5 style="color:white;">Total: {{ objects|length }}</h5>
+            <!-- KPI CARDS -->
+            <div class="row text-center mb-3">
 
-            <div class="table-card">
+                <div class="col-md-4">
+                    <div class="stat-card" onclick="showChart('all', this)">
+                        <h6>Total Workshops</h6>
+                        <h3>{{ objects|length }}</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="stat-card" onclick="showChart('state', this)">
+                        <h6>States Covered</h6>
+                        <h3>{{ ws_states|length }}</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="stat-card" onclick="showChart('type', this)">
+                        <h6>Workshop Types</h6>
+                        <h3>{{ ws_type|length }}</h3>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="hint-text">Click on cards to filter charts</p>
+
+            <!-- CHARTS -->
+            <div id="chartsSection">
+
+                <!-- STATE CHART -->
+                <div id="stateChartBox" class="card">
+                    <h5>📊 State Distribution</h5>
+                    <div class="chart-container">
+                        <canvas id="stateChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- TYPE CHART -->
+                <div id="typeChartBox" class="card">
+                    <h5>📈 Workshop Types</h5>
+                    <div class="chart-container">
+                        <canvas id="typeChart"></canvas>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TABLE -->
+            <div class="card mt-4">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -167,14 +227,12 @@ body {
                             <td>{{ workshop.coordinator.get_full_name }}</td>
                             <td>{{ workshop.instructor.get_full_name }}</td>
                             <td>{{ workshop.workshop_type.name }}</td>
-                            <td>{{ workshop.coordinator.profile.state }}</td>
+                            <td>{{ workshop.coordinator.profile.get_state_display }}</td>
                             <td>{{ workshop.date }}</td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6" style="text-align:center;">
-                                No data found
-                            </td>
+                            <td colspan="6" style="text-align:center;">No data found</td>
                         </tr>
                         {% endfor %}
                     </tbody>
@@ -185,5 +243,72 @@ body {
 
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const stateLabels = {{ ws_states|safe }};
+const stateData = {{ ws_count|safe }};
+const typeLabels = {{ ws_type|safe }};
+const typeData = {{ ws_type_count|safe }};
+
+// STATE CHART
+const stateChart = new Chart(document.getElementById('stateChart'), {
+    type: 'bar',
+    data: {
+        labels: stateLabels,
+        datasets: [{
+            label: 'Workshops',
+            data: stateData
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// TYPE CHART
+const typeChart = new Chart(document.getElementById('typeChart'), {
+    type: 'pie',
+    data: {
+        labels: typeLabels,
+        datasets: [{
+            data: typeData
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false
+    }
+});
+
+// INTERACTION
+function showChart(type, el) {
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+        card.classList.remove('active-card');
+    });
+    el.classList.add('active-card');
+
+    if(type === 'state'){
+        document.getElementById('stateChartBox').style.display = 'block';
+        document.getElementById('typeChartBox').style.display = 'none';
+    }
+    else if(type === 'type'){
+        document.getElementById('stateChartBox').style.display = 'none';
+        document.getElementById('typeChartBox').style.display = 'block';
+    }
+    else {
+        document.getElementById('stateChartBox').style.display = 'block';
+        document.getElementById('typeChartBox').style.display = 'block';
+    }
+}
+
+// DEFAULT LOAD
+window.onload = function() {
+    showChart('all', document.querySelector('.stat-card'));
+};
+</script>
 
 {% endblock %}
