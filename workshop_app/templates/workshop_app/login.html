@@ -10,6 +10,23 @@
         background: linear-gradient(135deg, #2563eb, #1e293b);
         min-height: 100vh;
     }
+    /* 🔥 Premium Welcome Text */
+    .welcome-text {
+        font-size: 28px;
+        font-weight: 700;
+        text-align: center;
+        background: linear-gradient(90deg, #b63d19, #4f46e5, #2563eb);
+        background-size: 200%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: shine 3s linear infinite;
+    }
+
+    /* subtle animation */
+    @keyframes shine {
+        0% { background-position: 0%; }
+        100% { background-position: 200%; }
+    }
 
     .auth-wrapper {
         min-height: 90vh;
@@ -143,7 +160,7 @@
 <div class="auth-wrapper">
     <div class="auth-card">
 
-        <div class="auth-title">Welcome Back 👋</div>
+        <div class="auth-title welcome-text">Welcome Back 👋</div>
         <div class="auth-subtitle">Login to continue to FOSSEE Workshops</div>
 
         <form method="post">
