@@ -22,7 +22,7 @@ from .forms import FilterForm
 def is_instructor(user):
     return user.groups.filter(name='instructor').exists()
 
-
+@login_required
 def workshop_public_stats(request):
     user = request.user
 
