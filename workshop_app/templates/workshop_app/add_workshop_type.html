@@ -4,47 +4,136 @@
     Add new Workshop type
 {% endblock %}
 
+{% block extra %}
+<style>
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4f46e5, #2563eb);
+}
+
+/* CENTER WRAPPER */
+.wrapper {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* GLASS CARD */
+.card-box {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(14px);
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    color: white;
+}
+
+/* TITLE */
+.title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+}
+
+/* LABEL */
+.label-text {
+    font-weight: 600;
+}
+
+/* INPUT FIX */
+input, textarea {
+    width: 100% !important;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+}
+
+/* BUTTON */
+.btn-submit {
+    background: #22c55e;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+}
+
+.btn-submit:hover {
+    background: #16a34a;
+}
+
+/* ERROR */
+.text-danger {
+    font-size: 13px;
+}
+</style>
+{% endblock %}
+
 {% block content %}
-    <div class="container">
-        <h2 class="text-center m-2">New Workshop Type</h2>
-        <br>
+
+<div class="wrapper">
+
+    <div class="card-box">
+
+        <h2 class="title">Create Workshop Type</h2>
+
         <form method="post">
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Workshop Name :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.name }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.name.errors }}</div></div>
-                </div>
+            {% csrf_token %}
 
-            </div>
+            <!-- NAME -->
             <div class="row my-3">
-                <div class="col-3 font-weight-bold">Duration :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.duration }}</div></div>
-                    <div class="row m-1 text-muted"><div class="col">{{ form.duration.help_text }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.duration.errors }}</div></div>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Description :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.description }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.description.errors }}</div></div>
-                </div>
-            </div>
-            <div class="row my-3">
-                <div class="col-3 font-weight-bold">Terms and Conditions :</div>
-                <div class="col text-left">
-                    <div class="row"><div class="col">{{ form.terms_and_conditions }}</div></div>
-                    <div class="row m-1 text-danger"><div class="col">{{ form.terms_and_conditions.errors }}</div></div>
+                <div class="col-4 label-text">Workshop Name</div>
+                <div class="col-8">
+                    {{ form.name }}
+                    <div class="text-danger mt-1">{{ form.name.errors }}</div>
                 </div>
             </div>
 
+            <!-- DURATION -->
             <div class="row my-3">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-md btn-primary float-right m-3">Create</button>
+                <div class="col-4 label-text">Duration (days)</div>
+                <div class="col-8">
+                    {{ form.duration }}
+                    <div style="color: #e5e7eb; font-size: 12px; margin-top: 4px;">
+                        {{ form.duration.help_text }}
+                    </div>
+                    <div class="text-danger mt-1">{{ form.duration.errors }}</div>
                 </div>
             </div>
+
+            <!-- DESCRIPTION -->
+            <div class="row my-3">
+                <div class="col-4 label-text">Description</div>
+                <div class="col-8">
+                    {{ form.description }}
+                    <div class="text-danger mt-1">{{ form.description.errors }}</div>
+                </div>
+            </div>
+
+            <!-- T&C -->
+            <div class="row my-3">
+                <div class="col-4 label-text">Terms & Conditions</div>
+                <div class="col-8">
+                    {{ form.terms_and_conditions }}
+                    <div class="text-danger mt-1">{{ form.terms_and_conditions.errors }}</div>
+                </div>
+            </div>
+
+            <!-- BUTTON -->
+            <div class="text-right mt-4">
+                <button type="submit" class="btn-submit">
+                    Create Workshop
+                </button>
+            </div>
+
         </form>
+
     </div>
+
+</div>
+
 {% endblock %}
