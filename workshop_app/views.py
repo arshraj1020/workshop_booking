@@ -212,24 +212,22 @@ def workshop_status_instructor(request):
 def accept_workshop(request, workshop_id):
     user = request.user
 
-    # ✅ allow BOTH instructor + admin
-    if not (is_instructor(user) or user.is_superuser):
+    # ❌ STRICT RULE → ONLY INSTRUCTOR
+    if not is_instructor(user):
+        messages.error(request, "Only instructors can accept workshops")
         return redirect(get_landing_page(user))
 
     workshop = Workshop.objects.get(id=workshop_id)
 
-    # ✅ update status
+    # ✅ ACCEPT WORKSHOP
     workshop.status = 1
-
-    # ✅ if admin accepts, assign instructor = admin (optional)
     workshop.instructor = user
-
     workshop.save()
 
-    messages.success(request, "Workshop accepted!")
+    messages.success(request, "Workshop accepted successfully!")
 
-    # ✅ redirect correctly for admin
-    return redirect(reverse('workshop_app:workshop_status_coordinator'))
+    # ✅ REDIRECT TO INSTRUCTOR DASHBOARD
+    return redirect(reverse('workshop_app:workshop_status_instructor'))
 
 
 @login_required

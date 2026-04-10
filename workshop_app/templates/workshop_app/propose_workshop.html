@@ -21,7 +21,7 @@ Propose a workshop
 
     $(function () {
 
-        // ✅ DATEPICKER FIX
+        // DATEPICKER
         $(".datepicker").datepicker({
             changeMonth: true,
             changeYear: true,
@@ -31,7 +31,7 @@ Propose a workshop
             dateFormat: "yy-mm-dd"
         });
 
-        // ✅ T&C MODAL FIX
+        // TERMS & CONDITIONS MODAL
         $('#disp_tnc').click(function (e) {
             e.preventDefault();
 
@@ -52,6 +52,13 @@ Propose a workshop
 {% endblock %}
 
 {% block content %}
+
+<!-- 🔥 BLOCK INSTRUCTOR -->
+{% if request.user.groups.all.0.name == "instructor" %}
+<script>
+    window.location.href = "/workshop/dashboard/";
+</script>
+{% endif %}
 
 <style>
     html, body {
@@ -134,15 +141,11 @@ Propose a workshop
         background: rgba(255,0,0,0.1);
     }
 
-    .modal-open .modal {
-        overflow-y: hidden;
-    }
-
     .form-check a {
-    color: #facc15; /* bright yellow */
-    font-weight: 500;
-    text-decoration: underline;
-}
+        color: #facc15;
+        font-weight: 500;
+        text-decoration: underline;
+    }
 
     .form-check a:hover {
         color: #fde047;
@@ -152,7 +155,8 @@ Propose a workshop
 <div class="page-wrapper">
 
     <div class="note-box">
-        Before proposing the workshop, check it in <strong>Workshop Types</strong>
+        Only <strong>Coordinators</strong> can propose workshops.<br>
+        Please select from existing workshop types.
     </div>
 
     <div class="form-card">
@@ -162,9 +166,15 @@ Propose a workshop
         <form method="post">
             {% csrf_token %}
 
+            <!-- Workshop Type -->
+            <label>Workshop Type *</label>
             {{ form.workshop_type }}
+
+            <!-- Date -->
+            <label>Date *</label>
             {{ form.date }}
 
+            <!-- T&C -->
             <div class="form-check">
                 {{ form.tnc_accepted }}
                 I accept the
@@ -173,13 +183,14 @@ Propose a workshop
                 </a>
             </div>
 
+            <!-- Errors -->
             {% if form.errors %}
                 <div class="error-box">
-                    <strong>Errors:</strong>
                     {{ form.errors }}
                 </div>
             {% endif %}
 
+            <!-- Submit -->
             <button class="btn-submit" type="submit">Submit</button>
 
         </form>
@@ -189,7 +200,7 @@ Propose a workshop
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog">
+<div class="modal fade" id="exampleModalCenter" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
