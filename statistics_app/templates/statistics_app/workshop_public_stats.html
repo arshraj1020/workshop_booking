@@ -38,26 +38,6 @@ body {
     text-align: center;
     padding: 20px;
     border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-6px) scale(1.02);
-}
-
-.active-card {
-    border: 3px solid #22c55e;
-}
-
-.stat-card h6 {
-    opacity: 0.85;
-    margin-bottom: 5px;
-}
-
-.stat-card h3 {
-    margin: 0;
-    font-size: 26px;
 }
 
 .filter-card input,
@@ -89,16 +69,6 @@ body {
     background: #2563eb;
     color: white;
 }
-
-.table tbody tr:hover {
-    background: #f8fafc;
-}
-
-.hint-text {
-    text-align: center;
-    opacity: 0.7;
-    margin-bottom: 15px;
-}
 </style>
 
 <div class="container">
@@ -119,6 +89,12 @@ body {
 
                     <label>End Date</label>
                     <input type="date" name="to_date" value="{{ request.GET.to_date }}">
+
+                    <!-- 🔥 SEARCH ADDED -->
+                    <label>Search Workshop</label>
+                    <input type="text" name="search"
+                           placeholder="Search workshop / instructor / coordinator"
+                           value="{{ search_query }}">
 
                     <label>Workshop Type</label>
                     <select name="workshop_type">
@@ -144,12 +120,8 @@ body {
 
                     <label>Sort Results</label>
                     <select name="sort">
-                        <option value="date" {% if request.GET.sort == "date" %}selected{% endif %}>
-                            Oldest First
-                        </option>
-                        <option value="-date" {% if request.GET.sort == "-date" %}selected{% endif %}>
-                            Newest First
-                        </option>
+                        <option value="date">Oldest First</option>
+                        <option value="-date">Newest First</option>
                     </select>
 
                     <button type="submit" class="btn btn-success btn-main">
@@ -168,24 +140,25 @@ body {
         <!-- MAIN -->
         <div class="col-md-9">
 
+            <!-- KPI -->
             <div class="row text-center mb-3">
 
                 <div class="col-md-4">
-                    <div class="stat-card" onclick="showChart('all', this)">
+                    <div class="stat-card">
                         <h6>Total Workshops</h6>
                         <h3>{{ objects.paginator.count }}</h3>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="stat-card" onclick="showChart('state', this)">
+                    <div class="stat-card">
                         <h6>States Covered</h6>
                         <h3>{{ ws_states|length }}</h3>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <div class="stat-card" onclick="showChart('type', this)">
+                    <div class="stat-card">
                         <h6>Workshop Types</h6>
                         <h3>{{ ws_type|length }}</h3>
                     </div>
@@ -193,26 +166,31 @@ body {
 
             </div>
 
-            <p class="hint-text">Click on cards to filter charts</p>
-
-            <div id="chartsSection">
-
-                <div id="stateChartBox" class="card">
-                    <h5>📊 State Distribution</h5>
-                    <div class="chart-container">
-                        <canvas id="stateChart"></canvas>
-                    </div>
+            <!-- TREND -->
+            <div class="card">
+                <h5>📈 Workshop Trends</h5>
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
                 </div>
-
-                <div id="typeChartBox" class="card">
-                    <h5>📈 Workshop Type Distribution</h5>
-                    <div class="chart-container">
-                        <canvas id="typeChart"></canvas>
-                    </div>
-                </div>
-
             </div>
 
+            <!-- STATE -->
+            <div class="card">
+                <h5>📊 State Distribution</h5>
+                <div class="chart-container">
+                    <canvas id="stateChart"></canvas>
+                </div>
+            </div>
+
+            <!-- TYPE -->
+            <div class="card">
+                <h5>📊 Workshop Type Distribution</h5>
+                <div class="chart-container">
+                    <canvas id="typeChart"></canvas>
+                </div>
+            </div>
+
+            <!-- TABLE -->
             <div class="card mt-4">
                 <table class="table table-bordered">
                     <thead>
@@ -253,19 +231,31 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
+const trendLabels = {{ ws_trend_labels|safe }};
+const trendData = {{ ws_trend_data|safe }};
 const stateLabels = {{ ws_states|safe }};
 const stateData = {{ ws_count|safe }};
 const typeLabels = {{ ws_type|safe }};
 const typeData = {{ ws_type_count|safe }};
 
+new Chart(document.getElementById('trendChart'), {
+    type: 'line',
+    data: {
+        labels: trendLabels,
+        datasets: [{
+            label: 'Workshops Over Time',
+            data: trendData,
+            fill: false,
+            tension: 0.3
+        }]
+    }
+});
+
 new Chart(document.getElementById('stateChart'), {
     type: 'bar',
     data: {
         labels: stateLabels,
-        datasets: [{
-            label: 'Workshops',
-            data: stateData
-        }]
+        datasets: [{ data: stateData }]
     }
 });
 
@@ -273,35 +263,9 @@ new Chart(document.getElementById('typeChart'), {
     type: 'pie',
     data: {
         labels: typeLabels,
-        datasets: [{
-            data: typeData
-        }]
+        datasets: [{ data: typeData }]
     }
 });
-
-function showChart(type, el) {
-    document.querySelectorAll('.stat-card').forEach(card => {
-        card.classList.remove('active-card');
-    });
-    el.classList.add('active-card');
-
-    if(type === 'state'){
-        stateChartBox.style.display = 'block';
-        typeChartBox.style.display = 'none';
-    }
-    else if(type === 'type'){
-        stateChartBox.style.display = 'none';
-        typeChartBox.style.display = 'block';
-    }
-    else {
-        stateChartBox.style.display = 'block';
-        typeChartBox.style.display = 'block';
-    }
-}
-
-window.onload = function() {
-    showChart('all', document.querySelector('.stat-card'));
-};
 </script>
 
 {% endblock %}

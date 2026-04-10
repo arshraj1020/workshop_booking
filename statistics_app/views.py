@@ -10,6 +10,7 @@ from django.shortcuts import render, redirect
 from django.urls import reverse
 from django.utils import timezone
 from django.http import HttpResponse
+from django.db.models import Q   # 🔥 NEW (for search)
 
 # Local Imports
 from workshop_app.models import (
@@ -22,6 +23,7 @@ from .forms import FilterForm
 def is_instructor(user):
     return user.groups.filter(name='instructor').exists()
 
+
 @login_required
 def workshop_public_stats(request):
     user = request.user
@@ -31,6 +33,7 @@ def workshop_public_stats(request):
     to_date = request.GET.get('to_date')
     state = request.GET.get('state')
     workshoptype = request.GET.get('workshop_type')
+    search_query = request.GET.get('search')   # 🔥 SEARCH ADDED
     show_workshops = request.GET.get('show_workshops')
     sort = request.GET.get('sort') or "date"
     download = request.GET.get('download')
@@ -54,6 +57,16 @@ def workshop_public_stats(request):
     if workshoptype:
         workshops = workshops.filter(workshop_type_id=workshoptype)
 
+    # 🔥 SEARCH FILTER (ADVANCED)
+    if search_query:
+        workshops = workshops.filter(
+            Q(workshop_type__name__icontains=search_query) |
+            Q(coordinator__first_name__icontains=search_query) |
+            Q(coordinator__last_name__icontains=search_query) |
+            Q(instructor__first_name__icontains=search_query) |
+            Q(instructor__last_name__icontains=search_query)
+        )
+
     # ✅ Role-based filter
     if show_workshops:
         if is_instructor(user):
@@ -61,7 +74,7 @@ def workshop_public_stats(request):
         else:
             workshops = workshops.filter(coordinator_id=user.id)
 
-    # ✅ Sorting (safe)
+    # ✅ Sorting
     if sort in ["date", "-date"]:
         workshops = workshops.order_by(sort)
     else:
@@ -103,12 +116,23 @@ def workshop_public_stats(request):
     ws_states, ws_count = Workshop.objects.get_workshops_by_state(workshops)
     ws_type, ws_type_count = Workshop.objects.get_workshops_by_type(workshops)
 
+    # 🔥 WORKSHOP TREND
+    trend_queryset = workshops.values('date').order_by('date')
+    trend_dict = {}
+
+    for item in trend_queryset:
+        d = item['date'].strftime("%Y-%m-%d")
+        trend_dict[d] = trend_dict.get(d, 0) + 1
+
+    ws_trend_labels = list(trend_dict.keys())
+    ws_trend_data = list(trend_dict.values())
+
     # ✅ Pagination
     paginator = Paginator(workshops, 30)
     page = request.GET.get('page')
     workshops_page = paginator.get_page(page)
 
-    # ✅ Extra data for dropdowns
+    # ✅ Extra data
     all_workshop_types = WorkshopType.objects.all()
     all_states = states
 
@@ -118,6 +142,14 @@ def workshop_public_stats(request):
         "ws_count": ws_count,
         "ws_type": ws_type,
         "ws_type_count": ws_type_count,
+
+        # 🔥 TREND
+        "ws_trend_labels": ws_trend_labels,
+        "ws_trend_data": ws_trend_data,
+
+        # 🔍 SEARCH
+        "search_query": search_query,
+
         "all_workshop_types": all_workshop_types,
         "all_states": all_states,
         "selected_state": state,
