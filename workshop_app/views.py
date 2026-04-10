@@ -211,36 +211,25 @@ def workshop_status_instructor(request):
 @login_required
 def accept_workshop(request, workshop_id):
     user = request.user
-    if not is_instructor(user):
+
+    # ✅ allow BOTH instructor + admin
+    if not (is_instructor(user) or user.is_superuser):
         return redirect(get_landing_page(user))
+
     workshop = Workshop.objects.get(id=workshop_id)
-    # Change Status of the selected workshop
+
+    # ✅ update status
     workshop.status = 1
+
+    # ✅ if admin accepts, assign instructor = admin (optional)
     workshop.instructor = user
+
     workshop.save()
-    messages.add_message(request, messages.SUCCESS, "Workshop accepted!")
 
-    coordinator_profile = workshop.coordinator.profile
+    messages.success(request, "Workshop accepted!")
 
-    # For Instructor
-    send_email(request, call_on='Booking Confirmed',
-               user_position='instructor',
-               workshop_date=str(workshop.date),
-               workshop_title=workshop.workshop_type.name,
-               user_name=workshop.coordinator.get_full_name(),
-               other_email=workshop.coordinator.email,
-               phone_number=coordinator_profile.phone_number,
-               institute=coordinator_profile.institute
-               )
-
-    # For Coordinator
-    send_email(request, call_on='Booking Confirmed',
-               workshop_date=str(workshop.date),
-               workshop_title=workshop.workshop_type.name,
-               other_email=workshop.coordinator.email,
-               phone_number=request.user.profile.phone_number
-               )
-    return redirect(reverse('workshop_app:workshop_status_instructor'))
+    # ✅ redirect correctly for admin
+    return redirect(reverse('workshop_app:workshop_status_coordinator'))
 
 
 @login_required

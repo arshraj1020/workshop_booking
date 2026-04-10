@@ -81,8 +81,32 @@ Dashboard
     }
 
     td {
-        padding: 8px;
+        padding: 10px;
     }
+
+    .btn-accept {
+        background: #22c55e;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 12px;
+    }
+
+    .btn-accept:hover {
+        background: #16a34a;
+    }
+
+    .badge-accepted {
+        color: #22c55e;
+        font-weight: bold;
+    }
+
+    .badge-pending {
+        color: #facc15;
+        font-weight: bold;
+    }
+
 </style>
 {% endblock %}
 
@@ -90,7 +114,6 @@ Dashboard
 
 <div class="dashboard">
 
-    <!-- TOP UI -->
     <div class="welcome">
         Welcome {{ user.username }} 👋
     </div>
@@ -130,6 +153,7 @@ Dashboard
                         <th>Workshop</th>
                         <th>Date</th>
                         <th>Status</th>
+                        <th>Action</th> <!-- 🔥 ADDED -->
                     </tr>
                 </thead>
 
@@ -139,7 +163,29 @@ Dashboard
                         <td>{{ forloop.counter }}</td>
                         <td>{{ w.workshop_type.name }}</td>
                         <td>{{ w.date }}</td>
-                        <td>{{ w.get_status }}</td>
+
+                        <!-- STATUS -->
+                        <td>
+                            {% if w.status %}
+                                <span class="badge-accepted">Accepted</span>
+                            {% else %}
+                                <span class="badge-pending">Pending</span>
+                            {% endif %}
+                        </td>
+
+                        <!-- ACTION -->
+                        <td>
+                            {% if not w.status %}
+                                <a href="{% url 'workshop_app:accept_workshop' w.id %}"
+                                   class="btn-accept"
+                                   onclick="return confirm('Accept this workshop?')">
+                                    Accept
+                                </a>
+                            {% else %}
+                                ✔
+                            {% endif %}
+                        </td>
+
                     </tr>
                     {% endfor %}
                 </tbody>
