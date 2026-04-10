@@ -7,372 +7,173 @@
 {% block content %}
 
 <style>
-    body {
-        background: linear-gradient(135deg, #2563eb, #1e293b) !important;
-        min-height: 100vh;
-    }
+body {
+    background: linear-gradient(135deg, #2563eb, #1e293b) !important;
+    min-height: 100vh;
+}
 
-    .stats-wrapper {
-        padding: 20px 0;
-    }
+.stats-wrapper {
+    padding: 20px 0;
+}
 
-    .page-header {
-        text-align: center;
-        margin-bottom: 40px;
-    }
+.page-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-    .page-title {
-        font-size: 32px;
-        font-weight: 700;
-        color: white;
-        margin-bottom: 10px;
-        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: white;
+}
 
-    .page-subtitle {
-        color: rgba(255, 255, 255, 0.8);
-        font-size: 16px;
-    }
+.page-subtitle {
+    color: rgba(255,255,255,0.8);
+}
 
-    /* Filter Card */
-    .filter-card {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(20px);
-        padding: 25px;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        margin-bottom: 30px;
-        position: sticky;
-        top: 100px;
-    }
+/* Filter */
+.filter-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
 
-    .filter-title {
-        font-size: 20px;
-        font-weight: 700;
-        color: #1e293b;
-        margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 2px solid #e2e8f0;
-    }
+.filter-group {
+    margin-bottom: 15px;
+}
 
-    .filter-group {
-        margin-bottom: 20px;
-    }
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 8px;
+}
 
-    .filter-group label {
-        display: block;
-        font-weight: 600;
-        font-size: 13px;
-        color: #475569;
-        margin-bottom: 8px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+.btn-filter {
+    width: 100%;
+    margin-top: 10px;
+}
 
-    .filter-group input[type="date"],
-    .filter-group select {
-        width: 100%;
-        padding: 10px 14px;
-        border: 2px solid #e2e8f0;
-        border-radius: 8px;
-        font-size: 14px;
-        color: #1e293b;
-        background: white;
-        transition: all 0.3s ease;
-    }
+/* Table */
+.table-card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+}
 
-    .filter-group input[type="date"]:focus,
-    .filter-group select:focus {
-        border-color: #3b82f6;
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        outline: none;
-    }
-
-    .filter-actions {
-        display: flex;
-        gap: 10px;
-        margin-top: 25px;
-    }
-
-    .btn-filter {
-        flex: 1;
-        padding: 12px;
-        border-radius: 8px;
-        border: none;
-        font-weight: 600;
-        font-size: 14px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-    }
-
-    .btn-view {
-        background: linear-gradient(135deg, #10b981, #059669);
-        color: white;
-    }
-
-    .btn-view:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(16, 185, 129, 0.3);
-    }
-
-    .btn-download {
-        background: linear-gradient(135deg, #06b6d4, #0891b2);
-        color: white;
-    }
-
-    .btn-download:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 16px rgba(6, 182, 212, 0.3);
-    }
-
-    .btn-clear {
-        background: #f1f5f9;
-        color: #475569;
-        padding: 10px 20px;
-        margin-bottom: 20px;
-        border: 2px solid #e2e8f0;
-    }
-
-    .btn-clear:hover {
-        background: #e2e8f0;
-    }
-
-    /* Chart Buttons */
-    .chart-buttons {
-        display: flex;
-        gap: 15px;
-        margin-bottom: 25px;
-        flex-wrap: wrap;
-    }
-
-    .btn-chart {
-        padding: 12px 24px;
-        border-radius: 10px;
-        border: none;
-        font-weight: 600;
-        font-size: 14px;
-        color: white;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-
-    .btn-state-chart {
-        background: linear-gradient(135deg, #06b6d4, #0891b2);
-    }
-
-    .btn-workshop-chart {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-
-    .btn-chart:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Table Card */
-    .table-card {
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(20px);
-        padding: 30px;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        overflow-x: auto;
-    }
-
-    .table {
-        margin: 0;
-        background: white;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-
-    .table thead {
-        background: linear-gradient(135deg, #3b82f6, #2563eb);
-    }
-
-    .table thead th {
-        color: white;
-        font-weight: 600;
-        padding: 16px;
-        border: none;
-        text-align: left;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-    }
-
-    .table tbody tr {
-        transition: all 0.2s ease;
-        border-bottom: 1px solid #f1f5f9;
-    }
-
-    .table tbody tr:hover {
-        background: #f8fafc;
-        transform: scale(1.005);
-    }
-
-    .table tbody td {
-        padding: 14px 16px;
-        color: #334155;
-        font-size: 14px;
-    }
-
-    .pagination-info {
-        text-align: center;
-        color: white;
-        margin-top: 20px;
-        font-size: 14px;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-        .page-title {
-            font-size: 24px;
-        }
-
-        .filter-card {
-            position: relative;
-            top: 0;
-        }
-
-        .chart-buttons {
-            flex-direction: column;
-        }
-
-        .btn-chart {
-            width: 100%;
-        }
-
-        .filter-actions {
-            flex-direction: column;
-        }
-
-        .table-card {
-            padding: 20px 15px;
-        }
-
-        .table {
-            font-size: 12px;
-        }
-
-        .table thead th,
-        .table tbody td {
-            padding: 10px 8px;
-        }
-    }
+.table thead {
+    background: #2563eb;
+    color: white;
+}
 </style>
 
 <div class="container stats-wrapper">
+
     <div class="page-header">
         <h1 class="page-title">Workshop Statistics</h1>
         <p class="page-subtitle">View and analyze workshop data</p>
     </div>
 
     <div class="row">
-        <!-- Filters Sidebar -->
-        <div class="col-lg-3 col-md-4">
+
+        <!-- FILTER -->
+        <div class="col-md-3">
             <div class="filter-card">
-                <div class="filter-title">Filters</div>
-                
-                <button class="btn-filter btn-clear" onclick="clearFilters()">
-                    ✕ Clear
-                </button>
 
-                <form method="post" id="filterForm">
-                    {% csrf_token %}
-                    
+                <form method="GET">
+
+                    <!-- From Date -->
                     <div class="filter-group">
-                        <label>From date:</label>
-                        <input type="date" name="from_date" id="from_date">
+                        <label>From Date</label>
+                        <input type="date" name="from_date" value="{{ from_date }}">
                     </div>
 
+                    <!-- To Date -->
                     <div class="filter-group">
-                        <label>To date:</label>
-                        <input type="date" name="to_date" id="to_date">
+                        <label>To Date</label>
+                        <input type="date" name="to_date" value="{{ to_date }}">
                     </div>
 
+                    <!-- Workshop Type -->
                     <div class="filter-group">
-                        <label>Workshop:</label>
-                        <select name="workshop" id="workshop">
-                            <option value="">---------</option>
-                            {% for workshop in workshops %}
-                            <option value="{{ workshop.id }}">{{ workshop.name }}</option>
+                        <label>Workshop Type</label>
+                        <select name="workshop_type">
+                            <option value="">All</option>
+                            {% for w in all_workshop_types %}
+                                <option value="{{ w.id }}" {% if selected_type == w.id|stringformat:"s" %}selected{% endif %}>
+                                    {{ w.name }}
+                                </option>
                             {% endfor %}
                         </select>
                     </div>
 
+                    <!-- State -->
                     <div class="filter-group">
-                        <label>State:</label>
-                        <select name="state" id="state">
-                            <option value="">---------</option>
-                            {% for state in states %}
-                            <option value="{{ state }}">{{ state }}</option>
+                        <label>State</label>
+                        <select name="state">
+                            <option value="">All</option>
+                            {% for code, name in all_states %}
+                                <option value="{{ code }}" {% if selected_state == code %}selected{% endif %}>
+                                    {{ name }}
+                                </option>
                             {% endfor %}
                         </select>
                     </div>
 
+                    <!-- Sort -->
                     <div class="filter-group">
-                        <label>Sort by:</label>
-                        <select name="sort_by" id="sort_by">
-                            <option value="oldest">Oldest</option>
-                            <option value="newest">Newest</option>
+                        <label>Sort</label>
+                        <select name="sort">
+                            <option value="date" {% if selected_sort == "date" %}selected{% endif %}>Oldest</option>
+                            <option value="-date" {% if selected_sort == "-date" %}selected{% endif %}>Newest</option>
                         </select>
                     </div>
 
-                    <div class="filter-actions">
-                        <button type="submit" class="btn-filter btn-view">
-                            👁 View
-                        </button>
-                        <button type="button" class="btn-filter btn-download" onclick="downloadData()">
-                            ⬇ Download
-                        </button>
-                    </div>
+                    <!-- Buttons -->
+                    <button type="submit" class="btn btn-success btn-filter">
+                        View
+                    </button>
+
+                    <button type="submit" name="download" value="1" class="btn btn-info btn-filter">
+                        Download CSV
+                    </button>
+
                 </form>
             </div>
         </div>
 
-        <!-- Main Content -->
-        <div class="col-lg-9 col-md-8">
-            <!-- Chart Buttons -->
-            <div class="chart-buttons">
-                <button class="btn-chart btn-state-chart" onclick="showStateChart()">
-                    📊 State chart
-                </button>
-                <button class="btn-chart btn-workshop-chart" onclick="showWorkshopChart()">
-                    📈 Workshops chart
-                </button>
-            </div>
+        <!-- TABLE -->
+        <div class="col-md-9">
 
-            <!-- Data Table -->
+            <!-- DEBUG (remove later) -->
+            <h5 style="color:white;">Total: {{ objects|length }}</h5>
+
             <div class="table-card">
-                <table class="table">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>Sr No.</th>
-                            <th>Coordinator Name</th>
-                            <th>Institute Name</th>
-                            <th>Instructor Name</th>
-                            <th>Workshop Name</th>
-                            <th>Workshop Date</th>
+                            <th>#</th>
+                            <th>Coordinator</th>
+                            <th>Instructor</th>
+                            <th>Workshop</th>
+                            <th>State</th>
+                            <th>Date</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        {% for workshop in workshops_data %}
+                        {% for workshop in objects %}
                         <tr>
                             <td>{{ forloop.counter }}</td>
-                            <td>{{ workshop.coordinator }}</td>
-                            <td>{{ workshop.institute }}</td>
-                            <td>{{ workshop.instructor }}</td>
-                            <td>{{ workshop.name }}</td>
-                            <td>{{ workshop.date|date:"M d, Y" }}</td>
+                            <td>{{ workshop.coordinator.get_full_name }}</td>
+                            <td>{{ workshop.instructor.get_full_name }}</td>
+                            <td>{{ workshop.workshop_type.name }}</td>
+                            <td>{{ workshop.coordinator.profile.state }}</td>
+                            <td>{{ workshop.date }}</td>
                         </tr>
                         {% empty %}
                         <tr>
-                            <td colspan="6" style="text-align: center; padding: 40px; color: #64748b;">
-                                No data available. Try adjusting your filters.
+                            <td colspan="6" style="text-align:center;">
+                                No data found
                             </td>
                         </tr>
                         {% endfor %}
@@ -380,39 +181,9 @@
                 </table>
             </div>
 
-            <!-- Pagination -->
-            {% if is_paginated %}
-            <div class="pagination-info">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-            </div>
-            {% endif %}
         </div>
+
     </div>
 </div>
-
-<script>
-function clearFilters() {
-    document.getElementById('from_date').value = '';
-    document.getElementById('to_date').value = '';
-    document.getElementById('workshop').value = '';
-    document.getElementById('state').value = '';
-    document.getElementById('sort_by').value = 'oldest';
-}
-
-function downloadData() {
-    // Add download functionality
-    alert('Download functionality');
-}
-
-function showStateChart() {
-    // Add state chart functionality
-    alert('State chart');
-}
-
-function showWorkshopChart() {
-    // Add workshop chart functionality
-    alert('Workshop chart');
-}
-</script>
 
 {% endblock %}
