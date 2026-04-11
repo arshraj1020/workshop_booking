@@ -75,6 +75,85 @@ The original booking system was functional but barebones. The aim here was to ma
 
 ---
 
+
+---
+
+## 👥 User Roles & Account Setup
+
+This system supports two types of users:
+
+### 👨‍🏫 Instructor
+- Can **accept workshops**
+- Can **edit workshop types**
+- Can **update workshop details**
+- Has higher privileges in the system
+
+### 👨‍💼 Coordinator
+- Can **propose workshops**
+- Can **manage their own workshops**
+- Cannot accept workshops
+
+---
+
+## ⚡ Quick Account Setup (Without Email Verification)
+
+Since email verification is disabled for testing, users can be created directly using Django shell.
+
+### 🔹 Step 1: Open shell
+
+```bash
+python manage.py shell
+
+
+
+
+from django.contrib.auth.models import User, Group
+from workshop_app.models import Profile
+
+user, created = User.objects.get_or_create(
+    username='instructor_user',
+    defaults={'email': 'instructor@gmail.com'}
+)
+
+if created:
+    user.set_password('1234')
+    user.save()
+
+profile, _ = Profile.objects.get_or_create(user=user)
+profile.is_email_verified = True
+profile.save()
+
+group, _ = Group.objects.get_or_create(name='instructor')
+user.groups.add(group)
+
+print("Instructor created successfully ✅")
+
+
+
+
+
+from django.contrib.auth.models import User
+from workshop_app.models import Profile
+
+user, created = User.objects.get_or_create(
+    username='coordinator_user',
+    defaults={'email': 'coordinator@gmail.com'}
+)
+
+if created:
+    user.set_password('1234')
+    user.save()
+
+profile, _ = Profile.objects.get_or_create(user=user)
+profile.is_email_verified = True
+profile.save()
+
+print("Coordinator created successfully ✅")
+
+
+
+
+
 ## Design Decisions (Reasoning)
 
 ### 1. Which design concepts did you consider during your design changes?
