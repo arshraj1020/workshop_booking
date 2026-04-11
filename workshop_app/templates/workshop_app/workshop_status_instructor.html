@@ -14,7 +14,7 @@ body {
 }
 
 .dashboard {
-    padding: 40px 20px;
+    padding: 40px 15px;
     text-align: center;
 }
 
@@ -25,7 +25,7 @@ body {
 .cards {
     margin-top: 30px;
     display: flex;
-    gap: 24px;
+    gap: 20px;
     justify-content: center;
     flex-wrap: wrap;
 }
@@ -44,28 +44,33 @@ body {
     background: rgba(255,255,255,0.25);
 }
 
+/* 🔥 TABLE FIX */
 .table-box {
     margin: auto;
     margin-top: 20px;
-    width: 95%;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 100%;
     background: rgba(255,255,255,0.12);
-    padding: 20px;
+    padding: 15px;
     border-radius: 16px;
+    overflow-x: auto; /* ✅ IMPORTANT */
 }
 
 table {
     width: 100%;
+    min-width: 600px; /* ✅ FORCE SCROLL */
     color: white;
 }
 
 th {
     border-bottom: 1px solid rgba(255,255,255,0.3);
     padding: 10px;
+    white-space: nowrap;
 }
 
 td {
     padding: 10px;
+    white-space: nowrap;
 }
 
 .table-heading {
@@ -98,6 +103,17 @@ td {
 .btn-success:hover {
     background: #16a34a;
 }
+
+/* 📱 MOBILE IMPROVEMENT */
+@media (max-width: 768px) {
+    .dashboard {
+        padding: 20px 10px;
+    }
+
+    .card {
+        width: 100%;
+    }
+}
 </style>
 {% endblock %}
 
@@ -105,7 +121,6 @@ td {
 
 <div class="dashboard">
 
-    <!-- ✅ HEADER -->
     <h2 style="font-weight:600;">
         Welcome {{ user.first_name|default:user.username }} 👋
     </h2>
@@ -114,7 +129,7 @@ td {
         Manage and accept workshop requests here.
     </p>
 
-    <!-- ✅ INSTRUCTOR ACTION CARDS -->
+    <!-- CARDS -->
     <div class="cards">
 
         <a href="{% url 'workshop_app:add_workshop_type' %}" style="text-decoration:none; color:white;">
@@ -134,13 +149,14 @@ td {
     </div>
 
     {% if not workshops %}
+
         <div class="section">
             <h4>No workshops available</h4>
         </div>
 
     {% else %}
 
-        <!-- ✅ ACCEPTED -->
+        <!-- ACCEPTED -->
         <div class="section">
             <h4 class="table-heading">Accepted Workshops</h4>
 
@@ -160,17 +176,11 @@ td {
                     {% for workshop in workshops %}
                         {% if workshop.status %}
                             <tr>
-                                <td>
-                                    <a href="{% url 'workshop_app:view_profile' workshop.coordinator.id %}" style="color:#93c5fd;">
-                                        {{ workshop.coordinator.get_full_name }}
-                                    </a>
-                                </td>
+                                <td>{{ workshop.coordinator.get_full_name }}</td>
                                 <td>{{ workshop.coordinator.profile.institute }}</td>
                                 <td>{{ workshop.workshop_type.name }}</td>
                                 <td>{{ workshop.date }}</td>
-                                <td>
-                                    <span class="badge-success">Accepted</span>
-                                </td>
+                                <td><span class="badge-success">Accepted</span></td>
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -179,7 +189,7 @@ td {
             </div>
         </div>
 
-        <!-- ✅ PENDING -->
+        <!-- PENDING -->
         <div class="section">
             <h4 class="table-heading">Pending Workshops</h4>
 
@@ -200,21 +210,14 @@ td {
                     {% for workshop in workshops %}
                         {% if not workshop.status %}
                             <tr>
-                                <td>
-                                    <a href="{% url 'workshop_app:view_profile' workshop.coordinator.id %}" style="color:#93c5fd;">
-                                        {{ workshop.coordinator.get_full_name }}
-                                    </a>
-                                </td>
+                                <td>{{ workshop.coordinator.get_full_name }}</td>
                                 <td>{{ workshop.coordinator.profile.institute }}</td>
                                 <td>{{ workshop.workshop_type.name }}</td>
                                 <td>{{ workshop.date }}</td>
-                                <td>
-                                    <span class="badge-warning">Pending</span>
-                                </td>
+                                <td><span class="badge-warning">Pending</span></td>
                                 <td>
                                     <a href="{% url 'workshop_app:accept_workshop' workshop.id %}"
-                                       class="btn-success"
-                                       onclick="return confirm('Accept this workshop?')">
+                                       class="btn-success">
                                         Accept
                                     </a>
                                 </td>
