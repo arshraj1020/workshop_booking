@@ -73,8 +73,6 @@ The original booking system was functional but barebones. The aim here was to ma
 | <img src="Phone_ss/login.png" width="150"/> | <img src="Phone_ss/navbar.png" width="150"/> | <img src="Phone_ss/passwordreset.png" width="150"/> | <img src="Phone_ss/Propose_cord.png" width="150"/> |
 | <img src="Phone_ss/Stats1.png" width="150"/> | <img src="Phone_ss/Stats2.png" width="150"/> | <img src="Phone_ss/Stats3.png" width="150"/> | <img src="Phone_ss/Stats4.png" width="150"/> |
 
----
-
 
 ---
 
@@ -94,8 +92,20 @@ This system supports two types of users:
 - Cannot accept workshops
 
 ---
+## ⚙️ Setup Instructions
 
-## ⚡ Quick Account Setup (Without Email Verification)
+```bash
+git clone https://github.com/your-username/workshop_booking.git
+cd workshop_booking
+python -m venv venv
+source venv/bin/activate   # Mac/Linux
+venv\Scripts\activate      # Windows
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+## Quick Account Setup (Without Email Verification)
 
 Since email verification is disabled for testing, users can be created directly using Django shell.
 
@@ -103,10 +113,11 @@ Since email verification is disabled for testing, users can be created directly 
 
 ```bash
 python manage.py shell
+```
 
+### 🔹 Step 2: Create Instructor
 
-
-
+```bash
 from django.contrib.auth.models import User, Group
 from workshop_app.models import Profile
 
@@ -127,11 +138,12 @@ group, _ = Group.objects.get_or_create(name='instructor')
 user.groups.add(group)
 
 print("Instructor created successfully ✅")
+```
 
 
+### 🔹 Step 3: Create Coordinator
 
-
-
+```bash
 from django.contrib.auth.models import User
 from workshop_app.models import Profile
 
@@ -149,49 +161,73 @@ profile.is_email_verified = True
 profile.save()
 
 print("Coordinator created successfully ✅")
+```
+
+Go and Login using the user_id and password
 
 
+## Design Decisions & Justification (Reasoning)
 
+### What design principles guided your improvements?
 
+The redesign was guided by core UI/UX principles to enhance usability and clarity:
 
-## Design Decisions (Reasoning)
-
-### 1. Which design concepts did you consider during your design changes?
-
-* Visual hierarchy
-* Consistency
-* Minimalism
-* Accessibility
-
----
-
-### 2. Responsiveness
-
-* Mobile first philosophy
-* Flexbox grid layouts
-* No fixed width elements
+- Visual Hierarchy – Key actions such as proposing and accepting workshops were emphasized using size, spacing, and contrast to guide user attention.  
+- Consistency – A uniform design system (colors, buttons, layouts) was maintained across all pages to ensure a predictable and smooth user experience.  
+- Minimalism – Unnecessary elements were removed to reduce clutter and keep the interface clean and focused.  
+- Accessibility – Improved color contrast, readable typography, and proper spacing were used to make the interface usable for a wider range of users.  
+- User Feedback – Clear success/error messages and interactive states were added to improve user interaction and understanding.  
 
 ---
 
-### 3. Compromise
+### How did you ensure responsiveness across devices?
 
-No excessive animations
-Lightweight interface
+Responsiveness was achieved using a mobile-first approach:
+
+- Designed layouts starting from small screens and scaled up for larger devices  
+- Used flexbox and responsive grid systems for flexible layouts  
+- Avoided fixed widths so components adapt naturally to different screen sizes  
+- Optimized buttons and forms for better touch interaction on mobile devices  
+- Tested layouts across multiple screen sizes to ensure consistency  
 
 ---
 
-### 4. Problem faced
+### What trade-offs did you make between design and performance?
 
-In implementing the improvements for the Django-based online booking platform, there were many problems arising from attempts to merge the backend capabilities with the enhanced interface. Compatibility between the old Django template forms and the new elements proved to be difficult, since any changes to the HTML structure would break functionality. Properly linking and serving the static content like CSS stylesheets, JavaScript files, and images was also problematic, especially when it came to inter-page consistency. There was also the problem of enhancing the frontend without compromising important functionality like authorization processes, booking operations, and data validation mechanisms, which involved significant troubleshooting efforts. Consistency of responsiveness was another challenge, since while some layouts worked fine on desktop computers, they needed additional work to look good on mobile devices.
+While improving the UI/UX, performance was carefully considered:
 
-## ⚙️ Setup Instructions
+- Avoided heavy animations to maintain fast load times  
+- Used lightweight styling instead of heavy UI frameworks  
+- Limited external dependencies to reduce overhead  
+- Focused on usability and clarity rather than overly complex designs  
 
-```bash
-git clone https://github.com/your-username/workshop_booking.git
-cd workshop_booking
-python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
-pip install -r requirements.txt
-python manage.py migrate
-python manage.py runserver
+This ensured the system remains fast, efficient, and user-friendly.
+
+---
+
+### What was the most challenging part of the task and how did you approach it?
+
+The most challenging part was enhancing the UI without breaking the existing Django backend logic.
+
+- Django templates are tightly coupled with backend data, so even small UI changes could disrupt functionality  
+- Managing static files (CSS, JavaScript, images) consistently across pages was challenging  
+- Ensuring proper responsiveness required multiple iterations  
+
+Approach:
+
+- Made incremental changes and tested each component carefully  
+- Preserved backend structure while improving frontend templates  
+- Debugged issues step-by-step to maintain functionality  
+- Ensured core features like authentication, booking workflows, and validations remained intact  
+
+---
+
+### Outcome
+
+The final system is:
+
+- More intuitive and user-friendly  
+- Fully responsive across devices  
+- Visually modern while maintaining performance  
+- Efficient and easy to navigate for both instructors and coordinators
+
