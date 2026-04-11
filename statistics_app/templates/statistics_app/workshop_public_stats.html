@@ -19,7 +19,7 @@ body {
 }
 
 .page-title {
-    font-size: 36px;
+    font-size: 32px;
     font-weight: bold;
 }
 
@@ -27,9 +27,9 @@ body {
     background: white;
     border-radius: 14px;
     padding: 20px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     color: black;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 .stat-card {
@@ -45,29 +45,74 @@ body {
     width: 100%;
     padding: 10px;
     border-radius: 8px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     border: 1px solid #ddd;
 }
 
 .filter-card label {
     font-size: 13px;
     font-weight: 600;
-    margin-top: 8px;
+    margin-top: 6px;
     display: block;
 }
 
 .btn-main {
     width: 100%;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .chart-container {
-    height: 350px;
+    height: 300px;
 }
 
 .table thead {
     background: #2563eb;
     color: white;
+}
+
+/* 🔥 MOBILE FIX */
+@media (max-width: 768px) {
+
+    .row {
+        flex-direction: column;
+    }
+
+    .chart-container {
+        height: 220px;
+    }
+
+    .table-desktop {
+        display: none;
+    }
+
+    .mobile-cards {
+        display: block;
+    }
+
+    .mobile-card {
+        background: white;
+        color: black;
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .mobile-card p {
+        margin: 5px 0;
+        font-size: 14px;
+    }
+}
+
+/* DESKTOP */
+@media (min-width: 769px) {
+    .mobile-cards {
+        display: none;
+    }
+
+    .table-desktop {
+        display: block;
+    }
 }
 </style>
 
@@ -90,49 +135,38 @@ body {
                     <label>End Date</label>
                     <input type="date" name="to_date" value="{{ request.GET.to_date }}">
 
-                    <!-- 🔥 SEARCH ADDED -->
                     <label>Search Workshop</label>
-                    <input type="text" name="search"
-                           placeholder="Search workshop / instructor / coordinator"
-                           value="{{ search_query }}">
+                    <input type="text" name="search" value="{{ search_query }}">
 
                     <label>Workshop Type</label>
                     <select name="workshop_type">
-                        <option value="">All Workshop Types</option>
+                        <option value="">All</option>
                         {% for w in all_workshop_types %}
                         <option value="{{ w.id }}"
-                            {% if request.GET.workshop_type == w.id|stringformat:"s" %}selected{% endif %}>
-                            {{ w.name }}
+                        {% if request.GET.workshop_type == w.id|stringformat:"s" %}selected{% endif %}>
+                        {{ w.name }}
                         </option>
                         {% endfor %}
                     </select>
 
                     <label>State</label>
                     <select name="state">
-                        <option value="">All States</option>
+                        <option value="">All</option>
                         {% for code, name in all_states %}
                         <option value="{{ code }}"
-                            {% if request.GET.state == code %}selected{% endif %}>
-                            {{ name }}
+                        {% if request.GET.state == code %}selected{% endif %}>
+                        {{ name }}
                         </option>
                         {% endfor %}
                     </select>
 
-                    <label>Sort Results</label>
+                    <label>Sort</label>
                     <select name="sort">
-                        <option value="date">Oldest First</option>
-                        <option value="-date">Newest First</option>
+                        <option value="date">Oldest</option>
+                        <option value="-date">Newest</option>
                     </select>
 
-                    <button type="submit" class="btn btn-success btn-main">
-                        🔍 Apply Filters
-                    </button>
-
-                    <button type="submit" name="download" value="1"
-                            class="btn btn-info btn-main">
-                        ⬇ Download CSV
-                    </button>
-
+                    <button type="submit" class="btn btn-success btn-main">Apply</button>
                 </form>
             </div>
         </div>
@@ -142,56 +176,50 @@ body {
 
             <!-- KPI -->
             <div class="row text-center mb-3">
-
                 <div class="col-md-4">
                     <div class="stat-card">
-                        <h6>Total Workshops</h6>
+                        <h6>Total</h6>
                         <h3>{{ objects.paginator.count }}</h3>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="stat-card">
-                        <h6>States Covered</h6>
+                        <h6>States</h6>
                         <h3>{{ ws_states|length }}</h3>
                     </div>
                 </div>
-
                 <div class="col-md-4">
                     <div class="stat-card">
-                        <h6>Workshop Types</h6>
+                        <h6>Types</h6>
                         <h3>{{ ws_type|length }}</h3>
                     </div>
                 </div>
-
             </div>
 
-            <!-- TREND -->
+            <!-- CHARTS -->
             <div class="card">
-                <h5>📈 Workshop Trends</h5>
+                <h5>Workshop Trends</h5>
                 <div class="chart-container">
                     <canvas id="trendChart"></canvas>
                 </div>
             </div>
 
-            <!-- STATE -->
             <div class="card">
-                <h5>📊 State Distribution</h5>
+                <h5>State Distribution</h5>
                 <div class="chart-container">
                     <canvas id="stateChart"></canvas>
                 </div>
             </div>
 
-            <!-- TYPE -->
             <div class="card">
-                <h5>📊 Workshop Type Distribution</h5>
+                <h5>Type Distribution</h5>
                 <div class="chart-container">
                     <canvas id="typeChart"></canvas>
                 </div>
             </div>
 
-            <!-- TABLE -->
-            <div class="card mt-4">
+            <!-- TABLE DESKTOP -->
+            <div class="card table-desktop">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
@@ -203,7 +231,6 @@ body {
                             <th>Date</th>
                         </tr>
                     </thead>
-
                     <tbody>
                         {% for workshop in objects %}
                         <tr>
@@ -214,56 +241,56 @@ body {
                             <td>{{ workshop.coordinator.profile.get_state_display }}</td>
                             <td>{{ workshop.date }}</td>
                         </tr>
-                        {% empty %}
-                        <tr>
-                            <td colspan="6" style="text-align:center;">No data found</td>
-                        </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
 
-        </div>
+            <!-- MOBILE CARDS -->
+            <div class="mobile-cards">
+                {% for workshop in objects %}
+                <div class="mobile-card">
+                    <p><strong>#:</strong> {{ forloop.counter }}</p>
+                    <p><strong>Coordinator:</strong> {{ workshop.coordinator.get_full_name }}</p>
+                    <p><strong>Instructor:</strong> {{ workshop.instructor.get_full_name }}</p>
+                    <p><strong>Workshop:</strong> {{ workshop.workshop_type.name }}</p>
+                    <p><strong>State:</strong> {{ workshop.coordinator.profile.get_state_display }}</p>
+                    <p><strong>Date:</strong> {{ workshop.date }}</p>
+                </div>
+                {% endfor %}
+            </div>
 
+        </div>
     </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-const trendLabels = {{ ws_trend_labels|safe }};
-const trendData = {{ ws_trend_data|safe }};
-const stateLabels = {{ ws_states|safe }};
-const stateData = {{ ws_count|safe }};
-const typeLabels = {{ ws_type|safe }};
-const typeData = {{ ws_type_count|safe }};
+Chart.defaults.responsive = true;
+Chart.defaults.maintainAspectRatio = false;
 
 new Chart(document.getElementById('trendChart'), {
     type: 'line',
     data: {
-        labels: trendLabels,
-        datasets: [{
-            label: 'Workshops Over Time',
-            data: trendData,
-            fill: false,
-            tension: 0.3
-        }]
+        labels: {{ ws_trend_labels|safe }},
+        datasets: [{ data: {{ ws_trend_data|safe }} }]
     }
 });
 
 new Chart(document.getElementById('stateChart'), {
     type: 'bar',
     data: {
-        labels: stateLabels,
-        datasets: [{ data: stateData }]
+        labels: {{ ws_states|safe }},
+        datasets: [{ data: {{ ws_count|safe }} }]
     }
 });
 
 new Chart(document.getElementById('typeChart'), {
     type: 'pie',
     data: {
-        labels: typeLabels,
-        datasets: [{ data: typeData }]
+        labels: {{ ws_type|safe }},
+        datasets: [{ data: {{ ws_type_count|safe }} }]
     }
 });
 </script>
