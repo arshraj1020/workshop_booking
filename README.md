@@ -54,31 +54,27 @@ The original system was functional but minimal. This redesign makes it more intu
 
 ## 🖥 Desktop UI Preview
 
-|  |  |  |
-|--|--|--|
-| <img src="Desktop_ss/changePass.png" width="200"/> | <img src="Desktop_ss/CheckEmail.png" width="200"/> | <img src="Desktop_ss/Cordi_dashbord.png" width="200"/> |
-| <img src="Desktop_ss/create_workshop.png" width="200"/> | <img src="Desktop_ss/CreateNewAcc1.png" width="200"/> | <img src="Desktop_ss/CreateNewAcc2.png" width="200"/> |
-| <img src="Desktop_ss/CreateNewAcc3.png" width="200"/> | <img src="Desktop_ss/Cstats1.png" width="200"/> | <img src="Desktop_ss/Cstats2.png" width="200"/> |
-| <img src="Desktop_ss/Cstats3.png" width="200"/> | <img src="Desktop_ss/Edit_profile.png" width="200"/> | <img src="Desktop_ss/ForgotPass.png" width="200"/> |
-| <img src="Desktop_ss/Inst_dashbord.png" width="200"/> | <img src="Desktop_ss/Inst_dashbord2.png" width="200"/> | <img src="Desktop_ss/LoginPage.png" width="200"/> |
-| <img src="Desktop_ss/LogOut.png" width="200"/> | <img src="Desktop_ss/PasswordRest_done.png" width="200"/> | <img src="Desktop_ss/profile_inst.png" width="200"/> |
-| <img src="Desktop_ss/Profile.png" width="200"/> | <img src="Desktop_ss/propose_cord.png" width="200"/> | <img src="Desktop_ss/Types_inst.png" width="200"/> |
-| <img src="Desktop_ss/Types.png" width="200"/> | <img src="Desktop_ss/View_workshops.png" width="200"/> | <img src="Desktop_ss/view_edit_type.png" width="200"/> |
+|  |  |  |  |
+|--|--|--|--|
+| <img src="Desktop_ss/changePass.png" width="180"/> | <img src="Desktop_ss/CheckEmail.png" width="180"/> | <img src="Desktop_ss/Cordi_dashbord.png" width="180"/> | <img src="Desktop_ss/create_workshop.png" width="180"/> |
+| <img src="Desktop_ss/CreateNewAcc1.png" width="180"/> | <img src="Desktop_ss/CreateNewAcc2.png" width="180"/> | <img src="Desktop_ss/CreateNewAcc3.png" width="180"/> | <img src="Desktop_ss/Cstats1.png" width="180"/> |
+| <img src="Desktop_ss/Cstats2.png" width="180"/> | <img src="Desktop_ss/Cstats3.png" width="180"/> | <img src="Desktop_ss/Edit_profile.png" width="180"/> | <img src="Desktop_ss/ForgotPass.png" width="180"/> |
+| <img src="Desktop_ss/Inst_dashbord.png" width="180"/> | <img src="Desktop_ss/Inst_dashbord2.png" width="180"/> | <img src="Desktop_ss/LoginPage.png" width="180"/> | <img src="Desktop_ss/LogOut.png" width="180"/> |
+| <img src="Desktop_ss/PasswordRest_done.png" width="180"/> | <img src="Desktop_ss/profile_inst.png" width="180"/> | <img src="Desktop_ss/Profile.png" width="180"/> | <img src="Desktop_ss/propose_cord.png" width="180"/> |
+| <img src="Desktop_ss/Types_inst.png" width="180"/> | <img src="Desktop_ss/Types.png" width="180"/> | <img src="Desktop_ss/View_workshops.png" width="180"/> | <img src="Desktop_ss/view_edit_type.png" width="180"/> |
 
 ---
 
 ## 📱 Mobile UI Preview
 
-|  |  |  |
-|--|--|--|
-| <img src="Phone_ss/Change_pass.png" width="180"/> | <img src="Phone_ss/cord_dashbord.png" width="180"/> | <img src="Phone_ss/cord_dashbord1.png" width="180"/> |
-| <img src="Phone_ss/cord_profile.png" width="180"/> | <img src="Phone_ss/cord_view_workshop_types.png" width="180"/> | <img src="Phone_ss/create_ac1.png" width="180"/> |
-| <img src="Phone_ss/create_ac2.png" width="180"/> | <img src="Phone_ss/create_workshop.png" width="180"/> | <img src="Phone_ss/Edit_profile.png" width="180"/> |
-| <img src="Phone_ss/forgot_pass.png" width="180"/> | <img src="Phone_ss/Inst_dashbord.png" width="180"/> | <img src="Phone_ss/Inst_dashbord1.png" width="180"/> |
-| <img src="Phone_ss/Inst_edit.png" width="180"/> | <img src="Phone_ss/Inst_profile.png" width="180"/> | <img src="Phone_ss/Inst_view_edit.png" width="180"/> |
-| <img src="Phone_ss/Logged_out.png" width="180"/> | <img src="Phone_ss/login.png" width="180"/> | <img src="Phone_ss/navbar.png" width="180"/> |
-| <img src="Phone_ss/passwordreset.png" width="180"/> | <img src="Phone_ss/Propose_cord.png" width="180"/> | <img src="Phone_ss/Stats1.png" width="180"/> |
-| <img src="Phone_ss/Stats2.png" width="180"/> | <img src="Phone_ss/Stats3.png" width="180"/> | <img src="Phone_ss/Stats4.png" width="180"/> |
+|  |  |  |  |
+|--|--|--|--|
+| <img src="Phone_ss/Change_pass.png" width="150"/> | <img src="Phone_ss/cord_dashbord.png" width="150"/> | <img src="Phone_ss/cord_dashbord1.png" width="150"/> | <img src="Phone_ss/cord_profile.png" width="150"/> |
+| <img src="Phone_ss/cord_view_workshop_types.png" width="150"/> | <img src="Phone_ss/create_ac1.png" width="150"/> | <img src="Phone_ss/create_ac2.png" width="150"/> | <img src="Phone_ss/create_workshop.png" width="150"/> |
+| <img src="Phone_ss/Edit_profile.png" width="150"/> | <img src="Phone_ss/forgot_pass.png" width="150"/> | <img src="Phone_ss/Inst_dashbord.png" width="150"/> | <img src="Phone_ss/Inst_dashbord1.png" width="150"/> |
+| <img src="Phone_ss/Inst_edit.png" width="150"/> | <img src="Phone_ss/Inst_profile.png" width="150"/> | <img src="Phone_ss/Inst_view_edit.png" width="150"/> | <img src="Phone_ss/Logged_out.png" width="150"/> |
+| <img src="Phone_ss/login.png" width="150"/> | <img src="Phone_ss/navbar.png" width="150"/> | <img src="Phone_ss/passwordreset.png" width="150"/> | <img src="Phone_ss/Propose_cord.png" width="150"/> |
+| <img src="Phone_ss/Stats1.png" width="150"/> | <img src="Phone_ss/Stats2.png" width="150"/> | <img src="Phone_ss/Stats3.png" width="150"/> | <img src="Phone_ss/Stats4.png" width="150"/> |
 
 ---
 
