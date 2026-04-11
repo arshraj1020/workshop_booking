@@ -80,11 +80,8 @@ def user_login(request):
         form = UserLoginForm(request.POST)
         if form.is_valid():
             user = form.cleaned_data
-            if user.profile.is_email_verified:
-                login(request, user)
-                return redirect(get_landing_page(user))
-            else:
-                return render(request, 'workshop_app/activation.html')
+            login(request, user)
+            return redirect(get_landing_page(user))
         else:
             return render(request, 'workshop_app/login.html', {'form': form})
     else:
@@ -137,32 +134,37 @@ def activate_user(request, key=None):
 
 
 def user_register(request):
-    """User Registration form"""
     if request.method == 'POST':
         form = UserRegistrationForm(request.POST)
+
         if form.is_valid():
             username, password, key = form.save()
+
             new_user = authenticate(username=username, password=password)
-            user_position = new_user.profile.position
-            send_email(
-                request, call_on='Registration',
-                user_position=user_position,
-                key=key
-            )
-            return render(request, 'workshop_app/activation.html')
+
+            # ✅ still bypass email
+            new_user.profile.is_email_verified = True
+            new_user.profile.save()
+
+            # ❌ REMOVE AUTO LOGIN
+            # login(request, new_user)
+
+            messages.success(request, "Account created successfully! Please login.")
+
+            return redirect('workshop_app:login')
+
         else:
             if request.user.is_authenticated:
                 return redirect('workshop_app:view_own_profile')
-            return render(
-                request, "workshop_app/register.html",
-                {"form": form}
-            )
+
+            return render(request, "workshop_app/register.html", {"form": form})
+
     else:
-        if request.user.is_authenticated and is_email_checked(request.user):
+        if request.user.is_authenticated:
             return redirect(get_landing_page(request.user))
-        elif request.user.is_authenticated:
-            return render(request, 'workshop_app/activation.html')
+
         form = UserRegistrationForm()
+
     return render(request, "workshop_app/register.html", {"form": form})
 
 
