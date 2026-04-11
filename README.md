@@ -10,11 +10,11 @@ This project enhances the UI/UX of the original FOSSEE Workshop Booking System.
 
 The goal was to improve:
 
-- 📱 Mobile responsiveness  
-- 🎨 Modern UI design  
-- ⚡ Performance  
-- ♿ Accessibility  
-- 🔍 User experience & navigation  
+* 📱 Mobile responsiveness
+* 🎨 Modern UI design
+* ⚡ Performance
+* ♿ Accessibility
+* 🔍 User experience & navigation
 
 The original system was functional but minimal. This redesign makes it more intuitive, visually appealing, and mobile-friendly.
 
@@ -22,59 +22,63 @@ The original system was functional but minimal. This redesign makes it more intu
 
 ## 🛠 Tech Stack
 
-- HTML5 / CSS3  
-- Bootstrap / Custom CSS  
-- Django (existing backend)  
+* HTML5 / CSS3
+* Bootstrap / Custom CSS
+* Django (existing backend)
 
 ---
 
 ## 🚀 Key Improvements
 
 ### 🎨 UI Enhancements
-- Modern layout with gradients and glassmorphism
-- Improved typography and spacing
-- Better color contrast for readability
+
+* Modern layout with gradients and glassmorphism
+* Improved typography and spacing
+* Better color contrast for readability
 
 ### 📱 Mobile-First Design
-- Fully responsive layouts
-- Optimized forms for small screens
-- Improved touch interactions
+
+* Fully responsive layouts
+* Optimized forms for small screens
+* Improved touch interactions
 
 ### 📊 Dashboard Improvements
-- Structured cards for better hierarchy
-- Improved data visibility
-- Cleaner layout for better usability
+
+* Structured cards for better hierarchy
+* Improved data visibility
+* Cleaner layout for better usability
 
 ### 🧭 UX Improvements
-- Simplified navigation
-- Clear call-to-action buttons
-- Improved form design and validation
+
+* Simplified navigation
+* Clear call-to-action buttons
+* Improved form design and validation
 
 ---
 
 ## 🖥 Desktop UI Preview
 
-|  |  |  |  |
-|--|--|--|--|
-| <img src="Desktop_ss/changePass.png" width="180"/> | <img src="Desktop_ss/CheckEmail.png" width="180"/> | <img src="Desktop_ss/Cordi_dashbord.png" width="180"/> | <img src="Desktop_ss/create_workshop.png" width="180"/> |
-| <img src="Desktop_ss/CreateNewAcc1.png" width="180"/> | <img src="Desktop_ss/CreateNewAcc2.png" width="180"/> | <img src="Desktop_ss/CreateNewAcc3.png" width="180"/> | <img src="Desktop_ss/Cstats1.png" width="180"/> |
-| <img src="Desktop_ss/Cstats2.png" width="180"/> | <img src="Desktop_ss/Cstats3.png" width="180"/> | <img src="Desktop_ss/Edit_profile.png" width="180"/> | <img src="Desktop_ss/ForgotPass.png" width="180"/> |
-| <img src="Desktop_ss/Inst_dashbord.png" width="180"/> | <img src="Desktop_ss/Inst_dashbord2.png" width="180"/> | <img src="Desktop_ss/LoginPage.png" width="180"/> | <img src="Desktop_ss/LogOut.png" width="180"/> |
-| <img src="Desktop_ss/PasswordRest_done.png" width="180"/> | <img src="Desktop_ss/profile_inst.png" width="180"/> | <img src="Desktop_ss/Profile.png" width="180"/> | <img src="Desktop_ss/propose_cord.png" width="180"/> |
-| <img src="Desktop_ss/Types_inst.png" width="180"/> | <img src="Desktop_ss/Types.png" width="180"/> | <img src="Desktop_ss/View_workshops.png" width="180"/> | <img src="Desktop_ss/view_edit_type.png" width="180"/> |
+|                                                           |                                                        |                                                        |                                                         |
+| --------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------- |
+| <img src="Desktop_ss/changePass.png" width="180"/>        | <img src="Desktop_ss/CheckEmail.png" width="180"/>     | <img src="Desktop_ss/Cordi_dashbord.png" width="180"/> | <img src="Desktop_ss/create_workshop.png" width="180"/> |
+| <img src="Desktop_ss/CreateNewAcc1.png" width="180"/>     | <img src="Desktop_ss/CreateNewAcc2.png" width="180"/>  | <img src="Desktop_ss/CreateNewAcc3.png" width="180"/>  | <img src="Desktop_ss/Cstats1.png" width="180"/>         |
+| <img src="Desktop_ss/Cstats2.png" width="180"/>           | <img src="Desktop_ss/Cstats3.png" width="180"/>        | <img src="Desktop_ss/Edit_profile.png" width="180"/>   | <img src="Desktop_ss/ForgotPass.png" width="180"/>      |
+| <img src="Desktop_ss/Inst_dashbord.png" width="180"/>     | <img src="Desktop_ss/Inst_dashbord2.png" width="180"/> | <img src="Desktop_ss/LoginPage.png" width="180"/>      | <img src="Desktop_ss/LogOut.png" width="180"/>          |
+| <img src="Desktop_ss/PasswordRest_done.png" width="180"/> | <img src="Desktop_ss/profile_inst.png" width="180"/>   | <img src="Desktop_ss/Profile.png" width="180"/>        | <img src="Desktop_ss/propose_cord.png" width="180"/>    |
+| <img src="Desktop_ss/Types_inst.png" width="180"/>        | <img src="Desktop_ss/Types.png" width="180"/>          | <img src="Desktop_ss/View_workshops.png" width="180"/> | <img src="Desktop_ss/view_edit_type.png" width="180"/>  |
 
 ---
 
 ## 📱 Mobile UI Preview
 
-|  |  |  |  |
-|--|--|--|--|
-| <img src="Phone_ss/Change_pass.png" width="150"/> | <img src="Phone_ss/cord_dashbord.png" width="150"/> | <img src="Phone_ss/cord_dashbord1.png" width="150"/> | <img src="Phone_ss/cord_profile.png" width="150"/> |
-| <img src="Phone_ss/cord_view_workshop_types.png" width="150"/> | <img src="Phone_ss/create_ac1.png" width="150"/> | <img src="Phone_ss/create_ac2.png" width="150"/> | <img src="Phone_ss/create_workshop.png" width="150"/> |
-| <img src="Phone_ss/Edit_profile.png" width="150"/> | <img src="Phone_ss/forgot_pass.png" width="150"/> | <img src="Phone_ss/Inst_dashbord.png" width="150"/> | <img src="Phone_ss/Inst_dashbord1.png" width="150"/> |
-| <img src="Phone_ss/Inst_edit.png" width="150"/> | <img src="Phone_ss/Inst_profile.png" width="150"/> | <img src="Phone_ss/Inst_view_edit.png" width="150"/> | <img src="Phone_ss/Logged_out.png" width="150"/> |
-| <img src="Phone_ss/login.png" width="150"/> | <img src="Phone_ss/navbar.png" width="150"/> | <img src="Phone_ss/passwordreset.png" width="150"/> | <img src="Phone_ss/Propose_cord.png" width="150"/> |
-| <img src="Phone_ss/Stats1.png" width="150"/> | <img src="Phone_ss/Stats2.png" width="150"/> | <img src="Phone_ss/Stats3.png" width="150"/> | <img src="Phone_ss/Stats4.png" width="150"/> |
+|                                                                |                                                     |                                                      |                                                       |
+| -------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
+| <img src="Phone_ss/Change_pass.png" width="150"/>              | <img src="Phone_ss/cord_dashbord.png" width="150"/> | <img src="Phone_ss/cord_dashbord1.png" width="150"/> | <img src="Phone_ss/cord_profile.png" width="150"/>    |
+| <img src="Phone_ss/cord_view_workshop_types.png" width="150"/> | <img src="Phone_ss/create_ac1.png" width="150"/>    | <img src="Phone_ss/create_ac2.png" width="150"/>     | <img src="Phone_ss/create_workshop.png" width="150"/> |
+| <img src="Phone_ss/Edit_profile.png" width="150"/>             | <img src="Phone_ss/forgot_pass.png" width="150"/>   | <img src="Phone_ss/Inst_dashbord.png" width="150"/>  | <img src="Phone_ss/Inst_dashbord1.png" width="150"/>  |
+| <img src="Phone_ss/Inst_edit.png" width="150"/>                | <img src="Phone_ss/Inst_profile.png" width="150"/>  | <img src="Phone_ss/Inst_view_edit.png" width="150"/> | <img src="Phone_ss/Logged_out.png" width="150"/>      |
+| <img src="Phone_ss/login.png" width="150"/>                    | <img src="Phone_ss/navbar.png" width="150"/>        | <img src="Phone_ss/passwordreset.png" width="150"/>  | <img src="Phone_ss/Propose_cord.png" width="150"/>    |
+| <img src="Phone_ss/Stats1.png" width="150"/>                   | <img src="Phone_ss/Stats2.png" width="150"/>        | <img src="Phone_ss/Stats3.png" width="150"/>         | <img src="Phone_ss/Stats4.png" width="150"/>          |
 
 ---
 
@@ -82,45 +86,123 @@ The original system was functional but minimal. This redesign makes it more intu
 
 ### 1. What design principles guided your improvements?
 
-- **Visual Hierarchy** → Highlighted key actions and data  
-- **Consistency** → Uniform design across all pages  
-- **Minimalism** → Removed clutter  
-- **Accessibility** → Improved contrast and readability  
+* **Visual Hierarchy** → Highlighted key actions and data
+* **Consistency** → Uniform design across all pages
+* **Minimalism** → Removed clutter
+* **Accessibility** → Improved contrast and readability
 
 ---
 
 ### 2. How did you ensure responsiveness?
 
-- Mobile-first approach  
-- Used flexbox and responsive layouts  
-- Avoided fixed widths  
-- Tested across screen sizes  
+* Mobile-first approach
+* Used flexbox and responsive layouts
+* Avoided fixed widths
+* Tested across screen sizes
 
 ---
 
 ### 3. Trade-offs between design and performance
 
-- Avoided heavy animations  
-- Used lightweight styling  
-- Limited external dependencies  
+* Avoided heavy animations
+* Used lightweight styling
+* Limited external dependencies
 
 ---
 
 ### 4. Most challenging part
 
-**Challenge:**  
-Updating UI without breaking Django backend logic  
+**Challenge:**
+Updating UI without breaking Django backend logic
 
-**Solution:**  
-- Carefully modified templates  
-- Preserved backend structure  
-- Tested each component after changes  
+**Solution:**
+
+* Carefully modified templates
+* Preserved backend structure
+* Tested each component after changes
 
 ---
 
 ## ⚙️ Setup Instructions
 
 ### 1. Clone repository
+
 ```bash
 git clone https://github.com/your-username/workshop_booking.git
 cd workshop_booking
+```
+
+### 2. Create virtual environment
+
+```bash
+python -m venv venv
+```
+
+#### Activate environment
+
+**Mac/Linux**
+
+```bash
+source venv/bin/activate
+```
+
+**Windows**
+
+```bash
+venv\Scripts\activate
+```
+
+---
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+---
+
+### 4. Apply migrations
+
+```bash
+python manage.py migrate
+```
+
+---
+
+### 5. Run server
+
+```bash
+python manage.py runserver
+```
+
+---
+
+## ✨ Features
+
+* Workshop booking system
+* Instructor & Coordinator dashboards
+* Statistics & analytics
+* Profile management
+* Fully responsive UI
+
+---
+
+## 📂 Submission
+
+GitHub Repo:
+👉 https://github.com/your-username/workshop_booking
+
+---
+
+## 🌐 Live Demo
+
+Coming soon...
+
+---
+
+## 🏁 Final Note
+
+This project focuses on practical UI/UX improvements while maintaining performance and usability.
+
+The redesign ensures a better experience for students, especially on mobile devices.
