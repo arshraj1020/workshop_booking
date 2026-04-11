@@ -45,3 +45,4 @@ db.sqlite3
 #images/gif
 *.png
 *.gif
+!Desktop_ss/*.png
