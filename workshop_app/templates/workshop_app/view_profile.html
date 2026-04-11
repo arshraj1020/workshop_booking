@@ -50,6 +50,10 @@ body {
     border-radius: 8px;
     color: white;
 }
+
+.btn-secondary {
+    margin-left: 10px;
+}
 </style>
 {% endblock %}
 
@@ -137,8 +141,7 @@ body {
         <label>Department *</label>
         {{ form.department }}
 
-        <label>Position *</label>
-        {{ form.position }}
+        <!-- ❌ POSITION COMPLETELY REMOVED -->
 
         <label>State *</label>
         {{ form.state }}

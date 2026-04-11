@@ -230,14 +230,16 @@ class ProfileForm(forms.ModelForm):
                     {'class': "form-control", 'placeholder': "Last Name"}))
 
     def __init__(self, *args, **kwargs):
-        if 'user' in kwargs:
-            user = kwargs.pop('user')
+        user = kwargs.pop('user', None)   # ✅ always safe
         super(ProfileForm, self).__init__(*args, **kwargs)
-        self.fields['first_name'].initial = user.first_name
+
+        if user:
+            self.fields['first_name'].initial = user.first_name
+            self.fields['last_name'].initial = user.last_name
+
         self.fields['first_name'].widget.attrs.update(
             {'class': "form-control", 'placeholder': 'First Name'}
         )
-        self.fields['last_name'].initial = user.last_name
         self.fields['last_name'].widget.attrs.update(
             {'class': "form-control", 'placeholder': 'Last Name'}
         )
@@ -256,9 +258,9 @@ class ProfileForm(forms.ModelForm):
         self.fields['phone_number'].widget.attrs.update(
             {'class': "form-control", 'placeholder': 'Phone Number'}
         )
-        self.fields['position'].widget.attrs.update(
-            {'class': "form-control", 'placeholder': 'Position'}
-        )
         self.fields['location'].widget.attrs.update(
             {'class': "form-control", 'placeholder': 'Location'}
         )
+
+        # ✅ REMOVE POSITION FIELD COMPLETELY
+        self.fields.pop('position', None)
