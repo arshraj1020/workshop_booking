@@ -4,6 +4,7 @@ import "./Login.css";
 function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
     if (username && password) {
@@ -27,8 +28,11 @@ function Login() {
         <div className="login-card">
 
           <h2 className="title">Welcome Back 👋</h2>
-          <p className="subtitle">Login to continue to FOSSEE Workshops</p>
+          <p className="subtitle">
+            Login to continue to FOSSEE Workshops
+          </p>
 
+          {/* Username */}
           <input
             type="text"
             placeholder="👤 Username"
@@ -36,12 +40,22 @@ function Login() {
             onChange={(e) => setUsername(e.target.value)}
           />
 
-          <input
-            type="password"
-            placeholder="🔒 Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          {/* Password with eye */}
+          <div className="password-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              placeholder="🔒 Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+
+            <span
+              className="eye-icon"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
 
           <button onClick={handleLogin}>Sign In</button>
 
