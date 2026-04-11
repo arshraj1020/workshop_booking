@@ -6,94 +6,114 @@ Dashboard
 
 {% block extra %}
 <style>
-    body {
-        font-family: 'Segoe UI', sans-serif;
-        background: linear-gradient(135deg, #4f46e5, #2563eb);
-    }
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #4f46e5, #2563eb);
+}
 
-    .dashboard {
-        min-height: calc(100vh - 70px);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 16px;
-        text-align: center;
-        color: white;
-    }
+.dashboard {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 12px;
+    text-align: center;
+    color: white;
+}
 
+.welcome {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.subtitle {
+    margin-top: 10px;
+    opacity: 0.9;
+    font-size: 14px;
+    max-width: 400px;
+}
+
+.cards {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 600px;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+    width: 260px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 22px;
+    border-radius: 16px;
+    transition: 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* 🔥 TABLE FIX */
+.table-container {
+    margin-top: 40px;
+    width: 100%;
+    max-width: 100%;
+    background: rgba(255,255,255,0.1);
+    padding: 15px;
+    border-radius: 16px;
+    overflow-x: auto; /* ✅ SCROLL ENABLE */
+}
+
+table {
+    width: 100%;
+    min-width: 500px; /* ✅ PREVENT SQUEEZE */
+    color: white;
+}
+
+th {
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding: 10px;
+    white-space: nowrap;
+}
+
+td {
+    padding: 10px;
+    white-space: nowrap;
+}
+
+.badge-accepted {
+    color: #22c55e;
+    font-weight: bold;
+}
+
+.badge-pending {
+    color: #facc15;
+    font-weight: bold;
+}
+
+/* 📱 MOBILE IMPROVEMENT */
+@media (max-width: 768px) {
     .welcome {
-        font-size: 32px;
-        font-weight: 600;
-    }
-
-    .subtitle {
-        margin-top: 10px;
-        opacity: 0.9;
-        font-size: 15px;
-        max-width: 400px;
-    }
-
-    .cards {
-        margin-top: 40px;
-        display: flex;
-        gap: 24px;
-        justify-content: center;
-        flex-wrap: wrap;
-        max-width: 600px;
+        font-size: 22px;
     }
 
     .card-link {
-        text-decoration: none;
-        color: inherit;
-        width: 260px;
+        width: 100%;
     }
 
     .card {
-        background: rgba(255, 255, 255, 0.15);
-        backdrop-filter: blur(12px);
-        padding: 26px;
-        border-radius: 16px;
-        transition: 0.3s ease;
-        cursor: pointer;
-    }
-
-    .card:hover {
-        transform: translateY(-5px);
-        background: rgba(255, 255, 255, 0.25);
-    }
-
-    .table-container {
-        margin-top: 50px;
-        width: 90%;
-        max-width: 900px;
-        background: rgba(255,255,255,0.1);
-        padding: 20px;
-        border-radius: 16px;
-    }
-
-    table {
         width: 100%;
-        color: white;
     }
-
-    th {
-        border-bottom: 1px solid rgba(255,255,255,0.3);
-    }
-
-    td {
-        padding: 10px;
-    }
-
-    .badge-accepted {
-        color: #22c55e;
-        font-weight: bold;
-    }
-
-    .badge-pending {
-        color: #facc15;
-        font-weight: bold;
-    }
-
+}
 </style>
 {% endblock %}
 
@@ -126,7 +146,7 @@ Dashboard
 
     </div>
 
-    <!-- ✅ CLEAN TABLE (NO ACTION COLUMN) -->
+    <!-- TABLE -->
     <div class="table-container">
 
         <h4>Your Workshops</h4>
