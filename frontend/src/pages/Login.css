@@ -110,3 +110,13 @@ body {
     color: white;
     font-size: 12px;
   }
+
+  .success-msg {
+    background: #d4edda;
+    color: #155724;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 14px;
+  }
