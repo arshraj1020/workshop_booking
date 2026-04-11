@@ -1,30 +1,32 @@
 # 🚀 Workshop Booking UI/UX Enhancement (FOSSEE Task)
 
-> A mobile-first redesign focused on improving usability, accessibility, and overall user experience for students.
+![Django](https://img.shields.io/badge/Django-Backend-green)
+![UI/UX](https://img.shields.io/badge/UI%2FUX-Improved-blue)
+![Responsive](https://img.shields.io/badge/Mobile-Friendly-orange)
+
+> A mobile-first redesign focused on improving usability, accessibility, and overall user experience.
 
 ---
 
 ## 📌 Project Overview
 
-This project enhances the UI/UX of the original FOSSEE Workshop Booking System.
+This project enhances the UI/UX of the existing **FOSSEE Workshop Booking System**.
 
-The goal was to improve:
+### 🎯 Goals
 
-* 📱 Mobile responsiveness
-* 🎨 Modern UI design
-* ⚡ Performance
-* ♿ Accessibility
-* 🔍 User experience & navigation
-
-The original system was functional but minimal. This redesign makes it more intuitive, visually appealing, and mobile-friendly.
+* 📱 Improve mobile responsiveness
+* 🎨 Modernize UI design
+* ⚡ Optimize performance
+* ♿ Enhance accessibility
+* 🔍 Improve user experience
 
 ---
 
 ## 🛠 Tech Stack
 
 * HTML5 / CSS3
-* Bootstrap / Custom CSS
-* Django (existing backend)
+* Bootstrap + Custom CSS
+* Django (Existing Backend)
 
 ---
 
@@ -32,113 +34,110 @@ The original system was functional but minimal. This redesign makes it more intu
 
 ### 🎨 UI Enhancements
 
-* Modern layout with gradients and glassmorphism
-* Improved typography and spacing
-* Better color contrast for readability
+* Modern gradient + glassmorphism design
+* Better typography & spacing
+* Improved readability
 
 ### 📱 Mobile-First Design
 
-* Fully responsive layouts
-* Optimized forms for small screens
-* Improved touch interactions
+* Fully responsive layout
+* Optimized forms for mobile
+* Better touch interactions
 
 ### 📊 Dashboard Improvements
 
-* Structured cards for better hierarchy
-* Improved data visibility
-* Cleaner layout for better usability
+* Clean card-based layout
+* Better data visibility
+* Structured hierarchy
 
 ### 🧭 UX Improvements
 
 * Simplified navigation
-* Clear call-to-action buttons
-* Improved form design and validation
+* Clear CTA buttons
+* Improved form validation
 
 ---
 
-## 🖥 Desktop UI Preview
+## 🖥️ Desktop UI Preview
 
-|                                                           |                                                        |                                                        |                                                         |
-| --------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ | ------------------------------------------------------- |
-| <img src="Desktop_ss/changePass.png" width="180"/>        | <img src="Desktop_ss/CheckEmail.png" width="180"/>     | <img src="Desktop_ss/Cordi_dashbord.png" width="180"/> | <img src="Desktop_ss/create_workshop.png" width="180"/> |
-| <img src="Desktop_ss/CreateNewAcc1.png" width="180"/>     | <img src="Desktop_ss/CreateNewAcc2.png" width="180"/>  | <img src="Desktop_ss/CreateNewAcc3.png" width="180"/>  | <img src="Desktop_ss/Cstats1.png" width="180"/>         |
-| <img src="Desktop_ss/Cstats2.png" width="180"/>           | <img src="Desktop_ss/Cstats3.png" width="180"/>        | <img src="Desktop_ss/Edit_profile.png" width="180"/>   | <img src="Desktop_ss/ForgotPass.png" width="180"/>      |
-| <img src="Desktop_ss/Inst_dashbord.png" width="180"/>     | <img src="Desktop_ss/Inst_dashbord2.png" width="180"/> | <img src="Desktop_ss/LoginPage.png" width="180"/>      | <img src="Desktop_ss/LogOut.png" width="180"/>          |
-| <img src="Desktop_ss/PasswordRest_done.png" width="180"/> | <img src="Desktop_ss/profile_inst.png" width="180"/>   | <img src="Desktop_ss/Profile.png" width="180"/>        | <img src="Desktop_ss/propose_cord.png" width="180"/>    |
-| <img src="Desktop_ss/Types_inst.png" width="180"/>        | <img src="Desktop_ss/Types.png" width="180"/>          | <img src="Desktop_ss/View_workshops.png" width="180"/> | <img src="Desktop_ss/view_edit_type.png" width="180"/>  |
+<p align="center">
+  <img src="Desktop_ss/LoginPage.png" width="200"/>
+  <img src="Desktop_ss/Cordi_dashbord.png" width="200"/>
+  <img src="Desktop_ss/View_workshops.png" width="200"/>
+</p>
+
+<p align="center">
+  <img src="Desktop_ss/Profile.png" width="200"/>
+  <img src="Desktop_ss/create_workshop.png" width="200"/>
+  <img src="Desktop_ss/view_edit_type.png" width="200"/>
+</p>
 
 ---
 
 ## 📱 Mobile UI Preview
 
-|                                                                |                                                     |                                                      |                                                       |
-| -------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
-| <img src="Phone_ss/Change_pass.png" width="150"/>              | <img src="Phone_ss/cord_dashbord.png" width="150"/> | <img src="Phone_ss/cord_dashbord1.png" width="150"/> | <img src="Phone_ss/cord_profile.png" width="150"/>    |
-| <img src="Phone_ss/cord_view_workshop_types.png" width="150"/> | <img src="Phone_ss/create_ac1.png" width="150"/>    | <img src="Phone_ss/create_ac2.png" width="150"/>     | <img src="Phone_ss/create_workshop.png" width="150"/> |
-| <img src="Phone_ss/Edit_profile.png" width="150"/>             | <img src="Phone_ss/forgot_pass.png" width="150"/>   | <img src="Phone_ss/Inst_dashbord.png" width="150"/>  | <img src="Phone_ss/Inst_dashbord1.png" width="150"/>  |
-| <img src="Phone_ss/Inst_edit.png" width="150"/>                | <img src="Phone_ss/Inst_profile.png" width="150"/>  | <img src="Phone_ss/Inst_view_edit.png" width="150"/> | <img src="Phone_ss/Logged_out.png" width="150"/>      |
-| <img src="Phone_ss/login.png" width="150"/>                    | <img src="Phone_ss/navbar.png" width="150"/>        | <img src="Phone_ss/passwordreset.png" width="150"/>  | <img src="Phone_ss/Propose_cord.png" width="150"/>    |
-| <img src="Phone_ss/Stats1.png" width="150"/>                   | <img src="Phone_ss/Stats2.png" width="150"/>        | <img src="Phone_ss/Stats3.png" width="150"/>         | <img src="Phone_ss/Stats4.png" width="150"/>          |
+<p align="center">
+  <img src="Phone_ss/login.png" width="150"/>
+  <img src="Phone_ss/cord_dashbord.png" width="150"/>
+  <img src="Phone_ss/Inst_dashbord.png" width="150"/>
+</p>
+
+<p align="center">
+  <img src="Phone_ss/navbar.png" width="150"/>
+  <img src="Phone_ss/Profile.png" width="150"/>
+  <img src="Phone_ss/Propose_cord.png" width="150"/>
+</p>
 
 ---
 
-## 🧠 Design Decisions (Reasoning)
+## 🧠 Design Decisions
 
-### 1. What design principles guided your improvements?
+### ✔ Principles Used
 
-* **Visual Hierarchy** → Highlighted key actions and data
-* **Consistency** → Uniform design across all pages
-* **Minimalism** → Removed clutter
-* **Accessibility** → Improved contrast and readability
+* Visual Hierarchy
+* Consistency
+* Minimalism
+* Accessibility
 
----
+### 📱 Responsiveness Strategy
 
-### 2. How did you ensure responsiveness?
+* Mobile-first design
+* Flexbox layouts
+* No fixed widths
 
-* Mobile-first approach
-* Used flexbox and responsive layouts
-* Avoided fixed widths
-* Tested across screen sizes
+### ⚖ Trade-offs
 
----
+* Limited animations for performance
+* Lightweight UI
 
-### 3. Trade-offs between design and performance
+### 🚧 Biggest Challenge
 
-* Avoided heavy animations
-* Used lightweight styling
-* Limited external dependencies
+**Updating UI without breaking Django backend**
 
----
+✔ Solution:
 
-### 4. Most challenging part
-
-**Challenge:**
-Updating UI without breaking Django backend logic
-
-**Solution:**
-
-* Carefully modified templates
-* Preserved backend structure
-* Tested each component after changes
+* Modified templates carefully
+* Preserved backend logic
+* Tested each component
 
 ---
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone repository
+### 1️⃣ Clone Repo
 
 ```bash
-git clone https://github.com/your-username/workshop_booking.git
+git clone https://github.com/arshraj1020/workshop_booking.git
 cd workshop_booking
 ```
 
-### 2. Create virtual environment
+### 2️⃣ Create Virtual Environment
 
 ```bash
 python -m venv venv
 ```
 
-#### Activate environment
+### Activate
 
 **Mac/Linux**
 
@@ -154,7 +153,7 @@ venv\Scripts\activate
 
 ---
 
-### 3. Install dependencies
+### 3️⃣ Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -162,17 +161,10 @@ pip install -r requirements.txt
 
 ---
 
-### 4. Apply migrations
+### 4️⃣ Run Project
 
 ```bash
 python manage.py migrate
-```
-
----
-
-### 5. Run server
-
-```bash
 python manage.py runserver
 ```
 
@@ -180,29 +172,31 @@ python manage.py runserver
 
 ## ✨ Features
 
-* Workshop booking system
-* Instructor & Coordinator dashboards
-* Statistics & analytics
-* Profile management
-* Fully responsive UI
-
----
-
-## 📂 Submission
-
-GitHub Repo:
-👉 https://github.com/your-username/workshop_booking
+* Workshop Booking System
+* Instructor & Coordinator Dashboards
+* Analytics & Stats
+* Profile Management
+* Fully Responsive UI
 
 ---
 
 ## 🌐 Live Demo
 
-Coming soon...
+🚧 Coming Soon...
+
+---
+
+## 👨‍💻 Author
+
+**Arsh Raj**
 
 ---
 
 ## 🏁 Final Note
 
-This project focuses on practical UI/UX improvements while maintaining performance and usability.
+This project focuses on **real-world UI/UX improvements** while maintaining backend stability.
 
-The redesign ensures a better experience for students, especially on mobile devices.
+✔ Clean
+✔ Responsive
+✔ User-friendly
+✔ Production-ready
