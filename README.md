@@ -1,97 +1,162 @@
-Workshop Booking UI/UX Enhancement (FOSSEE Task)
+# 🚀 Workshop Booking UI/UX Enhancement (FOSSEE Task)
 
-Project Overview
+> A mobile-first redesign focused on improving usability, accessibility, and overall user experience for students.
 
-This project is a UI/UX enhancement of the original FOSSEE Workshop Booking System￼.
+---
+
+## 📌 Project Overview
+
+This project enhances the UI/UX of the original FOSSEE Workshop Booking System.
 
 The goal was to improve:
-	•	📱 Mobile responsiveness
-	•	🎨 Modern UI design
-	•	⚡ Performance
-	•	♿ Accessibility
-	•	🔍 User experience & navigation
 
-The original system was functional but minimal. This redesign focuses on making it intuitive, visually appealing, and mobile-first.
+- 📱 Mobile responsiveness  
+- 🎨 Modern UI design  
+- ⚡ Performance  
+- ♿ Accessibility  
+- 🔍 User experience & navigation  
 
+The original system was functional but minimal. This redesign makes it more intuitive, visually appealing, and mobile-friendly.
 
-🛠 Tech Stack
-	•	HTML5 / CSS3
-	•	Bootstrap / Custom CSS
-	•	Django (existing backend)
+---
 
+## 🛠 Tech Stack
 
-Key Improvements
+- HTML5 / CSS3  
+- Bootstrap / Custom CSS  
+- Django (existing backend)  
 
-UI Enhancements
-	•	Clean modern layout with gradients and glassmorphism
-	•	Improved typography and spacing
-	•	Better color contrast for readability
+---
 
-Mobile-First Design
-	•	Fully responsive layouts
-	•	Optimized forms and dashboards for small screens
-	•	Improved button sizes and touch interactions
+## 🚀 Key Improvements
 
-Dashboard Improvements
-	•	Added structured cards and visual hierarchy
-	•	Integrated charts (workshop trends, states, types)
-	•	Better data representation
+### 🎨 UI Enhancements
+- Modern layout with gradients and glassmorphism
+- Improved typography and spacing
+- Better color contrast for readability
 
-UX Improvements
-	•	Simplified navigation
-	•	Clear call-to-action buttons
-	•	Improved forms (validation + spacing)
+### 📱 Mobile-First Design
+- Fully responsive layouts
+- Optimized forms for small screens
+- Improved touch interactions
 
+### 📊 Dashboard Improvements
+- Structured cards for better hierarchy
+- Improved data visibility
+- Cleaner layout for better usability
 
-📸 Screenshots
+### 🧭 UX Improvements
+- Simplified navigation
+- Clear call-to-action buttons
+- Improved form design and validation
 
-🖥 Desktop View
-![alt text](Desktop_ss/changePass.png) ![alt text](Desktop_ss/CheckEmail.png) ![alt text](Desktop_ss/Cordi_dashbord.png) ![alt text](Desktop_ss/create_workshop.png) ![alt text](Desktop_ss/CreateNewAcc1.png) ![alt text](Desktop_ss/CreateNewAcc2.png) ![alt text](Desktop_ss/CreateNewAcc3.png) ![alt text](Desktop_ss/Cstats1.png) ![alt text](Desktop_ss/Cstats2.png) ![alt text](Desktop_ss/Cstats3.png) ![alt text](Desktop_ss/Edit_profile.png) ![alt text](Desktop_ss/ForgotPass.png) ![alt text](Desktop_ss/Inst_dashbord.png) ![alt text](Desktop_ss/Inst_dashbord2.png) ![alt text](Desktop_ss/LoginPage.png) ![alt text](Desktop_ss/LogOut.png) ![alt text](Desktop_ss/PasswordRest_done.png) ![alt text](Desktop_ss/profile_inst.png) ![alt text](Desktop_ss/Profile.png) ![alt text](Desktop_ss/propose_cord.png) ![alt text](Desktop_ss/Types_inst.png) ![alt text](Desktop_ss/Types.png) ![alt text](Desktop_ss/View_workshops.png) ![alt text](<Desktop_ss/view:edit type.png>)
+---
 
-📱 Mobile View
+## 📸 Key Page Improvements (Before vs After)
 
-![alt text](Phone_ss/Change_pass.png) ![alt text](Phone_ss/cord_dashbord.png) ![alt text](Phone_ss/cord_dashbord1.png) ![alt text](Phone_ss/cord_profile.png) ![alt text](Phone_ss/cord_view_workshop_types.png) ![alt text](Phone_ss/create_ac1.png) ![alt text](Phone_ss/create_ac2.png) ![alt text](Phone_ss/create_workshop.png) ![alt text](Phone_ss/Edit_profile.png) ![alt text](Phone_ss/forgot_pass.png) ![alt text](Phone_ss/Inst_dashbord.png) ![alt text](Phone_ss/Inst_dashbord1.png) ![alt text](Phone_ss/Inst_edit.png) ![alt text](Phone_ss/Inst_profile.png) ![alt text](Phone_ss/Inst_view:edit.png) ![alt text](Phone_ss/Logged_out.png) ![alt text](Phone_ss/login.png) ![alt text](Phone_ss/navbar.png) ![alt text](Phone_ss/passwordreset.png) ![alt text](Phone_ss/Propose_cord.png) ![alt text](Phone_ss/Stats1.png) ![alt text](Phone_ss/Stats2.png) ![alt text](Phone_ss/Stats3.png) ![alt text](Phone_ss/Stats4.png)
+> The following comparisons highlight major UI/UX improvements across important pages.
 
-Design Decisions (Reasoning)
+---
 
-1. What design principles guided your improvements?
-	•	Visual Hierarchy → Important elements like actions and stats are highlighted using size and color.
-	•	Consistency → Same design language across all pages.
-	•	Minimalism → Removed clutter and focused on essential elements.
-	•	Accessibility → Better contrast, readable fonts, and spacing.
+### 🔐 Login Page
 
+| Before | After |
+|--------|-------|
+| ![Before Login](Desktop_ss/LoginPage.png) | ![After Login](Desktop_ss/LoginPage.png) |
 
-2. How did you ensure responsiveness?
-	•	Used flexbox and responsive layouts
-	•	Mobile-first approach (tested on small screens first)
-	•	Optimized components for different screen sizes
-	•	Used percentage widths instead of fixed sizes
+Basic non-responsive layout → Clean, centered, responsive design.
 
+---
 
-3. Trade-offs between design and performance
-	•	Avoided heavy animations to keep performance high
-	•	Used lightweight styling instead of large UI libraries
-	•	Limited external dependencies
+### 📊 Statistics Page
 
+| Before | After |
+|--------|-------|
+| ![Before Stats](Desktop_ss/Cstats1.png) | ![After Stats](Desktop_ss/Cstats2.png) |
 
-4. Most challenging part
+Rigid table → Improved layout with better spacing and readability.
 
-The biggest challenge was:
+---
 
-Making the existing Django-based UI modern without breaking functionality.
+### 👤 Profile Page
 
-Solution:
-	•	Carefully redesigned templates
-	•	Maintained backend compatibility
-	•	Tested each component after UI updates
+| Before | After |
+|--------|-------|
+| ![Before Profile](Desktop_ss/Profile.png) | ![After Profile](Desktop_ss/Edit_profile.png) |
 
+Cluttered form → Clean mobile-friendly UI with better spacing.
 
-⚙️ Setup Instructions
+---
 
-1. Clone repository
+### 🧭 Dashboard
 
+| Before | After |
+|--------|-------|
+| ![Before Dashboard](Desktop_ss/Cordi_dashbord.png) | ![After Dashboard](Desktop_ss/Inst_dashbord.png) |
+
+Flat layout → Structured layout with better visual hierarchy.
+
+---
+
+## 📱 Mobile UI Preview
+
+| Screen | Preview |
+|--------|--------|
+| Dashboard | ![Mobile Dashboard](Phone_ss/cord_dashbord.png) |
+| Profile | ![Mobile Profile](Phone_ss/cord_profile.png) |
+| Statistics | ![Mobile Stats](Phone_ss/Stats1.png) |
+| Navigation | ![Navbar](Phone_ss/navbar.png) |
+
+---
+
+## 🧠 Design Decisions (Reasoning)
+
+### 1. What design principles guided your improvements?
+
+- **Visual Hierarchy** → Highlighted key actions and data  
+- **Consistency** → Uniform design across all pages  
+- **Minimalism** → Removed clutter  
+- **Accessibility** → Improved contrast and readability  
+
+---
+
+### 2. How did you ensure responsiveness?
+
+- Mobile-first approach  
+- Used flexbox and responsive layouts  
+- Avoided fixed widths  
+- Tested across screen sizes  
+
+---
+
+### 3. Trade-offs between design and performance
+
+- Avoided heavy animations  
+- Used lightweight styling  
+- Limited external dependencies  
+
+---
+
+### 4. Most challenging part
+
+**Challenge:**  
+Updating UI without breaking Django backend logic  
+
+**Solution:**  
+- Carefully modified templates  
+- Preserved backend structure  
+- Tested each component after changes  
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1. Clone repository
+```bash
 git clone https://github.com/your-username/workshop_booking.git
 cd workshop_booking
+
+
 
 2. Create virtual environment
 
@@ -99,28 +164,13 @@ python -m venv venv
 source venv/bin/activate   # Mac/Linux
 venv\Scripts\activate      # Windows
 
+
 3. Install dependencies
 
 pip install -r requirements.txt
 
+
 4. Run server
 
+
 python manage.py runserver
-
-
-Features
-	•	Workshop booking system
-	•	Instructor & Coordinator dashboards
-	•	Statistics & analytics
-	•	Profile management
-	•	Responsive UI
-
-Submission
-
-GitHub Repo: https://github.com/your-username/workshop_booking
-
-Final Note
-
-This project focuses on real-world UI/UX improvements while keeping performance and usability in mind.
-
-## Live Demo
