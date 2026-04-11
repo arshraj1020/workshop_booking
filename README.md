@@ -1,60 +1,53 @@
-# 🚀 Workshop Booking UI/UX Enhancement (FOSSEE Task)
+# Enhancing UI/UX of Workshop Booking System (FOSSEE Task)
 
-> A mobile-first redesign focused on improving usability, accessibility, and overall user experience for students.
+> A mobile-first design to improve usability and user experience of the booking portal for students.
 
----
+## About the Project
 
-## 📌 Project Overview
+Enhancement of the existing UI/UX of the original FOSSEE Workshop Booking System.
 
-This project enhances the UI/UX of the original FOSSEE Workshop Booking System.
+Objective:
 
-The goal was to improve:
+* 📱 Responsive design
+* 🎨 Modern and aesthetic UI
+* ⚡ Performance optimizations
+* ♿ Accessible
+* 🔍 Enhanced user experience and user interface
 
-* 📱 Mobile responsiveness
-* 🎨 Modern UI design
-* ⚡ Performance
-* ♿ Accessibility
-* 🔍 User experience & navigation
+The original booking system was functional but barebones. The aim here was to make the design more visually pleasing and modern as well as enhance its usability and accessibility.
 
-The original system was functional but minimal. This redesign makes it more intuitive, visually appealing, and mobile-friendly.
 
----
+## Technology Used
 
-## 🛠 Tech Stack
+* HTML5/CSS3
+* Bootstrap/Custom CSS
+* Django (backend was unchanged)
 
-* HTML5 / CSS3
-* Bootstrap / Custom CSS
-* Django (existing backend)
 
----
+## Enhancements Made
 
-## 🚀 Key Improvements
+### UI Design Enhancements
 
-### 🎨 UI Enhancements
+* Modern design with gradient effects and Glassmorphism
+* Font styles have been improved
+* Color Contrast has been enhanced
 
-* Modern layout with gradients and glassmorphism
-* Improved typography and spacing
-* Better color contrast for readability
+### Mobile-First Approach
 
-### 📱 Mobile-First Design
+* All pages are fully responsive
+* Forms are optimized for mobile screens
+* Touch friendly interfaces
 
-* Fully responsive layouts
-* Optimized forms for small screens
-* Improved touch interactions
+### Dashboard Design Enhancements
 
-### 📊 Dashboard Improvements
+* Cards used to give structure to dashboard
+* Data visualization has been improved
 
-* Structured cards for better hierarchy
-* Improved data visibility
-* Cleaner layout for better usability
+### UX Enhancements
 
-### 🧭 UX Improvements
-
-* Simplified navigation
-* Clear call-to-action buttons
-* Improved form design and validation
-
----
+* Navigation has been improved
+* Clear Call-To-Actions provided
+* Form design has been improved
 
 ## 🖥 Desktop UI Preview
 
@@ -82,37 +75,35 @@ The original system was functional but minimal. This redesign makes it more intu
 
 ---
 
-## 🧠 Design Decisions (Reasoning)
+## Design Decisions (Reasoning)
 
-### 1. What design principles guided your improvements?
+### 1. Which design concepts did you consider during your design changes?
 
-* **Visual Hierarchy**
-* **Consistency**
-* **Minimalism**
-* **Accessibility**
+* Visual hierarchy
+* Consistency
+* Minimalism
+* Accessibility
 
 ---
 
 ### 2. Responsiveness
 
-* Mobile-first approach
-* Flexbox layouts
-* No fixed widths
+* Mobile first philosophy
+* Flexbox grid layouts
+* No fixed width elements
 
 ---
 
-### 3. Trade-offs
+### 3. Compromise
 
-* No heavy animations
-* Lightweight UI
-
----
-
-### 4. Challenge
-
-Maintaining Django functionality while redesigning UI.
+No excessive animations
+Lightweight interface
 
 ---
+
+### 4. Problem faced
+
+In implementing the improvements for the Django-based online booking platform, there were many problems arising from attempts to merge the backend capabilities with the enhanced interface. Compatibility between the old Django template forms and the new elements proved to be difficult, since any changes to the HTML structure would break functionality. Properly linking and serving the static content like CSS stylesheets, JavaScript files, and images was also problematic, especially when it came to inter-page consistency. There was also the problem of enhancing the frontend without compromising important functionality like authorization processes, booking operations, and data validation mechanisms, which involved significant troubleshooting efforts. Consistency of responsiveness was another challenge, since while some layouts worked fine on desktop computers, they needed additional work to look good on mobile devices.
 
 ## ⚙️ Setup Instructions
 
