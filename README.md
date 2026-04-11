@@ -52,60 +52,33 @@ The original system was functional but minimal. This redesign makes it more intu
 
 ---
 
-## 📸 Key Page Improvements (Before vs After)
+## 🖥 Desktop UI Preview
 
-> The following comparisons highlight major UI/UX improvements across important pages.
-
----
-
-### 🔐 Login Page
-
-| Before | After |
-|--------|-------|
-| ![Before Login](Desktop_ss/LoginPage.png) | ![After Login](Desktop_ss/LoginPage.png) |
-
-Basic non-responsive layout → Clean, centered, responsive design.
-
----
-
-### 📊 Statistics Page
-
-| Before | After |
-|--------|-------|
-| ![Before Stats](Desktop_ss/Cstats1.png) | ![After Stats](Desktop_ss/Cstats2.png) |
-
-Rigid table → Improved layout with better spacing and readability.
-
----
-
-### 👤 Profile Page
-
-| Before | After |
-|--------|-------|
-| ![Before Profile](Desktop_ss/Profile.png) | ![After Profile](Desktop_ss/Edit_profile.png) |
-
-Cluttered form → Clean mobile-friendly UI with better spacing.
-
----
-
-### 🧭 Dashboard
-
-| Before | After |
-|--------|-------|
-| ![Before Dashboard](Desktop_ss/Cordi_dashbord.png) | ![After Dashboard](Desktop_ss/Inst_dashbord.png) |
-
-Flat layout → Structured layout with better visual hierarchy.
+|  |  |  |
+|--|--|--|
+| <img src="Desktop_ss/changePass.png" width="200"/> | <img src="Desktop_ss/CheckEmail.png" width="200"/> | <img src="Desktop_ss/Cordi_dashbord.png" width="200"/> |
+| <img src="Desktop_ss/create_workshop.png" width="200"/> | <img src="Desktop_ss/CreateNewAcc1.png" width="200"/> | <img src="Desktop_ss/CreateNewAcc2.png" width="200"/> |
+| <img src="Desktop_ss/CreateNewAcc3.png" width="200"/> | <img src="Desktop_ss/Cstats1.png" width="200"/> | <img src="Desktop_ss/Cstats2.png" width="200"/> |
+| <img src="Desktop_ss/Cstats3.png" width="200"/> | <img src="Desktop_ss/Edit_profile.png" width="200"/> | <img src="Desktop_ss/ForgotPass.png" width="200"/> |
+| <img src="Desktop_ss/Inst_dashbord.png" width="200"/> | <img src="Desktop_ss/Inst_dashbord2.png" width="200"/> | <img src="Desktop_ss/LoginPage.png" width="200"/> |
+| <img src="Desktop_ss/LogOut.png" width="200"/> | <img src="Desktop_ss/PasswordRest_done.png" width="200"/> | <img src="Desktop_ss/profile_inst.png" width="200"/> |
+| <img src="Desktop_ss/Profile.png" width="200"/> | <img src="Desktop_ss/propose_cord.png" width="200"/> | <img src="Desktop_ss/Types_inst.png" width="200"/> |
+| <img src="Desktop_ss/Types.png" width="200"/> | <img src="Desktop_ss/View_workshops.png" width="200"/> | <img src="Desktop_ss/view_edit_type.png" width="200"/> |
 
 ---
 
 ## 📱 Mobile UI Preview
 
-| Screen | Preview |
-|--------|--------|
-| Dashboard | ![Mobile Dashboard](Phone_ss/cord_dashbord.png) |
-| Profile | ![Mobile Profile](Phone_ss/cord_profile.png) |
-| Statistics | ![Mobile Stats](Phone_ss/Stats1.png) |
-| Navigation | ![Navbar](Phone_ss/navbar.png) |
+|  |  |  |
+|--|--|--|
+| <img src="Phone_ss/Change_pass.png" width="180"/> | <img src="Phone_ss/cord_dashbord.png" width="180"/> | <img src="Phone_ss/cord_dashbord1.png" width="180"/> |
+| <img src="Phone_ss/cord_profile.png" width="180"/> | <img src="Phone_ss/cord_view_workshop_types.png" width="180"/> | <img src="Phone_ss/create_ac1.png" width="180"/> |
+| <img src="Phone_ss/create_ac2.png" width="180"/> | <img src="Phone_ss/create_workshop.png" width="180"/> | <img src="Phone_ss/Edit_profile.png" width="180"/> |
+| <img src="Phone_ss/forgot_pass.png" width="180"/> | <img src="Phone_ss/Inst_dashbord.png" width="180"/> | <img src="Phone_ss/Inst_dashbord1.png" width="180"/> |
+| <img src="Phone_ss/Inst_edit.png" width="180"/> | <img src="Phone_ss/Inst_profile.png" width="180"/> | <img src="Phone_ss/Inst_view_edit.png" width="180"/> |
+| <img src="Phone_ss/Logged_out.png" width="180"/> | <img src="Phone_ss/login.png" width="180"/> | <img src="Phone_ss/navbar.png" width="180"/> |
+| <img src="Phone_ss/passwordreset.png" width="180"/> | <img src="Phone_ss/Propose_cord.png" width="180"/> | <img src="Phone_ss/Stats1.png" width="180"/> |
+| <img src="Phone_ss/Stats2.png" width="180"/> | <img src="Phone_ss/Stats3.png" width="180"/> | <img src="Phone_ss/Stats4.png" width="180"/> |
 
 ---
 
@@ -155,22 +128,3 @@ Updating UI without breaking Django backend logic
 ```bash
 git clone https://github.com/your-username/workshop_booking.git
 cd workshop_booking
-
-
-
-2. Create virtual environment
-
-python -m venv venv
-source venv/bin/activate   # Mac/Linux
-venv\Scripts\activate      # Windows
-
-
-3. Install dependencies
-
-pip install -r requirements.txt
-
-
-4. Run server
-
-
-python manage.py runserver
