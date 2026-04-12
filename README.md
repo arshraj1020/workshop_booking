@@ -65,28 +65,28 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 </tr>
 
 <tr>
-<td><img src="Old_ui/Login.jpeg" width="400"/></td>
-<td><img src="Old_ui/LoginN.png" width="400"/></td>
+<td><img src="changes_in_ui/Login.jpeg" width="400"/></td>
+<td><img src="changes_in_ui/LoginN.png" width="400"/></td>
 </tr>
 
 <tr>
-<td><img src="Old_ui/dashbord.jpeg" width="400"/></td>
-<td><img src="Old_ui/DashbordN.png" width="400"/></td>
+<td><img src="changes_in_ui/dashbord.jpeg" width="400"/></td>
+<td><img src="changes_in_ui/DashbordN.png" width="400"/></td>
 </tr>
 
 <tr>
-<td><img src="Old_ui/home.jpeg" width="400"/></td>
-<td><img src="Old_ui/typesN.png" width="400"/></td>
+<td><img src="changes_in_ui/home.jpeg" width="400"/></td>
+<td><img src="changes_in_ui/typesN.png" width="400"/></td>
 </tr>
 
 <tr>
-<td><img src="Old_ui/change_pass.jpeg" width="400"/></td>
-<td><img src="Old_ui/chnage_passN.png" width="400"/></td>
+<td><img src="changes_in_ui/change_pass.jpeg" width="400"/></td>
+<td><img src="changes_in_ui/chnage_passN.png" width="400"/></td>
 </tr>
 
 <tr>
-<td><img src="Old_ui/stats.jpeg" width="400"/></td>
-<td><img src="Old_ui/StatsN.png" width="400"/></td>
+<td><img src="changes_in_ui/stats.jpeg" width="400"/></td>
+<td><img src="changes_in_ui/StatsN.png" width="400"/></td>
 </tr>
 </table>
 ---
