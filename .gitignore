@@ -46,3 +46,4 @@ db.sqlite3
 *.gif
 !Desktop_ss/*.png
 !Phone_ss/*.png
+!Old_ui/*.png

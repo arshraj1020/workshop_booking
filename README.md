@@ -60,7 +60,7 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 | Old UI | New UI |
 |--------|--------|
 | ![Old Login](Old_ui/Login.jpeg) | ![New Login](Old_ui/LoginN.png) |
-| ![Old Dashboard](Old_ui/dashbord.jpeg) | ![New Dashboard](Old_ui/DashboardN.png) |
+| ![Old Dashboard](Old_ui/dashbord.jpeg) | ![New Dashboard](Old_ui/DashbordN.png) |
 | ![Old Home](Old_ui/home.jpeg) | ![New Home](Old_ui/typesN.png) |
 | ![Old Change Pass](Old_ui/change_pass.jpeg) | ![New Change Pass](Old_ui/chnage_passN.png) |
 | ![Old Stats](Old_ui/stats.jpeg) | ![New Stats](Old_ui/StatsN.png) |
