@@ -59,11 +59,11 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 
 | Old UI | New UI |
 |--------|--------|
-| ![Old Login](Old_ui/Login.jpeg) | ![New Login](Desktop_ss/LoginPage.png) |
-| ![Old Dashboard](Old_ui/dashbord.jpeg) | ![New Dashboard](Desktop_ss/Inst_dashbord.png) |
-| ![Old Home](Old_ui/home.jpeg) | ![New Home](Desktop_ss/Types.png) |
-| ![Old Change Pass](Old_ui/change_pass.jpeg) | ![New Change Pass](Desktop_ss/changePass.png) |
-| ![Old Stats](Old_ui/stats.jpeg) | ![New Stats](Desktop_ss/Cstats1.png) |
+| ![Old Login](Old_ui/Login.jpeg) | ![New Login](Old_ui/Login.png) |
+| ![Old Dashboard](Old_ui/dashbord.jpeg) | ![New Dashboard](Old_ui/Dashbord.png) |
+| ![Old Home](Old_ui/home.jpeg) | ![New Home](Old_ui/types.png) |
+| ![Old Change Pass](Old_ui/change_pass.jpeg) | ![New Change Pass](Old_ui/chnage_pass.png) |
+| ![Old Stats](Old_ui/stats.jpeg) | ![New Stats](Old_ui/Stats.png) |
 
 ---
 
