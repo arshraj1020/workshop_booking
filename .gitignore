@@ -15,6 +15,11 @@ lib/
 *.egg
 pip-log.txt
 pip-delete-this-directory.txt
+venv/
+env/
+.env/
+__pycache__/
+*.pyc
 
 # Django stuff:
 *.log
