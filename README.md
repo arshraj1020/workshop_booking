@@ -144,7 +144,7 @@ This system supports two types of users:
 ## ⚙️ Setup Instructions(Error may come during execution please follow all commands)
 
 ```bash
-git clone https://github.com/your-username/workshop_booking.git
+git clone https://github.com/arshraj1020/workshop_booking.git
 cd workshop_booking
 python -m venv venv
 venv\Scripts\activate      # Windows
