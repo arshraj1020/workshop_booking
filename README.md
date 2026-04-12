@@ -121,6 +121,9 @@ All screenshots were captured from locally running instances of both versions of
 | <img src="Phone_ss/Stats1.png" width="150"/> | <img src="Phone_ss/Stats2.png" width="150"/> | <img src="Phone_ss/Stats3.png" width="150"/> | <img src="Phone_ss/Stats4.png" width="150"/> |
 
 
+### 🎥 Demo Video
+[Click here to watch video](changes_in_ui/Vid.mov)
+
 
 ## 👥 User Roles & Account Setup
 
