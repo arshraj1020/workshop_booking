@@ -19,6 +19,7 @@ The original booking system was functional but barebones. The aim here was to ma
 
 ## Technology Used
 
+* React
 * HTML5/CSS3
 * Bootstrap/Custom CSS
 * Django (backend was unchanged)
@@ -57,17 +58,39 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 
 ### 📸 Visual Comparison
 
-| Old UI | New UI |
-|--------|--------|
-| ![Old Login](Old_ui/Login.jpeg) | ![New Login](Old_ui/LoginN.png) |
-| ![Old Dashboard](Old_ui/dashbord.jpeg) | ![New Dashboard](Old_ui/DashbordN.png) |
-| ![Old Home](Old_ui/home.jpeg) | ![New Home](Old_ui/typesN.png) |
-| ![Old Change Pass](Old_ui/change_pass.jpeg) | ![New Change Pass](Old_ui/chnage_passN.png) |
-| ![Old Stats](Old_ui/stats.jpeg) | ![New Stats](Old_ui/StatsN.png) |
+<table>
+<tr>
+<td align="center"><b>Old UI</b></td>
+<td align="center"><b>New UI</b></td>
+</tr>
 
+<tr>
+<td><img src="Old_ui/Login.jpeg" width="400"/></td>
+<td><img src="Old_ui/LoginN.png" width="400"/></td>
+</tr>
+
+<tr>
+<td><img src="Old_ui/dashbord.jpeg" width="400"/></td>
+<td><img src="Old_ui/DashbordN.png" width="400"/></td>
+</tr>
+
+<tr>
+<td><img src="Old_ui/home.jpeg" width="400"/></td>
+<td><img src="Old_ui/typesN.png" width="400"/></td>
+</tr>
+
+<tr>
+<td><img src="Old_ui/change_pass.jpeg" width="400"/></td>
+<td><img src="Old_ui/chnage_passN.png" width="400"/></td>
+</tr>
+
+<tr>
+<td><img src="Old_ui/stats.jpeg" width="400"/></td>
+<td><img src="Old_ui/StatsN.png" width="400"/></td>
+</tr>
+</table>
 ---
 
-### 🎯 Improvements Observed
 
 ### Note
 
@@ -98,7 +121,6 @@ All screenshots were captured from locally running instances of both versions of
 | <img src="Phone_ss/Stats1.png" width="150"/> | <img src="Phone_ss/Stats2.png" width="150"/> | <img src="Phone_ss/Stats3.png" width="150"/> | <img src="Phone_ss/Stats4.png" width="150"/> |
 
 
----
 
 ## 👥 User Roles & Account Setup
 
@@ -189,6 +211,18 @@ print("Coordinator created successfully ✅")
 
 Go and Login using the user_id and password
 
+
+A new Login Page has been implemented using React in the frontend.
+
+---
+
+To run the React frontend:
+
+```bash
+cd frontend
+npm install
+npm start
+```
 
 ## Design Decisions & Justification (Reasoning)
 
