@@ -296,3 +296,6 @@ The final system is:
 - Visually modern while maintaining performance  
 - Efficient and easy to navigate for both instructors and coordinators
 
+
+#### This redesign was iteratively improved based on testing different layouts and observing usability issues in the original system.
+
