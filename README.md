@@ -59,11 +59,11 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 
 | Old UI | New UI |
 |--------|--------|
-| Old_ui/WhatsApp Image 2026-04-12 at 16.06.03.jpeg| New UI 1 |
-| Old_ui/WhatsApp Image 2026-04-12 at 16.06.15.jpegOld UI 2 | New UI 2 |
-| Old_ui/WhatsApp Image 2026-04-12 at 16.19.15.jpeg | New UI 3 |
-| Old_ui/WhatsApp Image 2026-04-12 at 16.20.11.jpeg | New UI 4 |
-| Old_ui/WhatsApp Image 2026-04-12 at 16.20.43.jpeg| New UI 5 |
+| ![Old Login](Old_ui/Login.jpeg) | ![New Login](Desktop_ss/LoginPage.png) |
+| ![Old Dashboard](Old_ui/dashbord.jpeg) | ![New Dashboard](Desktop_ss/Inst_dashbord.png) |
+| ![Old Home](Old_ui/home.jpeg) | ![New Home](Desktop_ss/Types.png) |
+| ![Old Change Pass](Old_ui/change_pass.jpeg) | ![New Change Pass](Desktop_ss/changePass.png) |
+| ![Old Stats](Old_ui/stats.jpeg) | ![New Stats](Desktop_ss/Cstats1.png) |
 
 ---
 
