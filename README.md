@@ -8,11 +8,11 @@ Enhancement of the existing UI/UX of the original FOSSEE Workshop Booking System
 
 Objective:
 
-* 📱 Responsive design
-* 🎨 Modern and aesthetic UI
-* ⚡ Performance optimizations
-* ♿ Accessible
-* 🔍 Enhanced user experience and user interface
+* Responsive design
+* Modern and aesthetic UI
+* Performance optimizations
+* Accessible
+* Enhanced user experience and user interface
 
 The original booking system was functional but barebones. The aim here was to make the design more visually pleasing and modern as well as enhance its usability and accessibility.
 
@@ -56,7 +56,7 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 
 ---
 
-### 📸 Visual Comparison
+### Visual Comparison
 
 <table>
 <tr>
@@ -96,7 +96,7 @@ Below is a side-by-side comparison of the previous UI and the redesigned UI to h
 
 All screenshots were captured from locally running instances of both versions of the project. The redesign focuses on improving usability, visual clarity, and overall user experience.
 
-## 🖥 Desktop UI Preview
+## Desktop UI Preview
 
 |  |  |  |  |
 |--|--|--|--|
@@ -109,7 +109,7 @@ All screenshots were captured from locally running instances of both versions of
 
 ---
 
-## 📱 Mobile UI Preview
+## Mobile UI Preview
 
 |  |  |  |  |
 |--|--|--|--|
@@ -121,21 +121,21 @@ All screenshots were captured from locally running instances of both versions of
 | <img src="Phone_ss/Stats1.png" width="150"/> | <img src="Phone_ss/Stats2.png" width="150"/> | <img src="Phone_ss/Stats3.png" width="150"/> | <img src="Phone_ss/Stats4.png" width="150"/> |
 
 
-### 🎥 Demo Video
+### Demo Video
 [Click here to watch video](changes_in_ui/Vid.mov)
 
 
-## 👥 User Roles & Account Setup
+## User Roles & Account Setup
 
 This system supports two types of users:
 
-### 👨‍🏫 Instructor
+### Instructor
 - Can **accept workshops**
 - Can **edit workshop types**
 - Can **update workshop details**
 - Has higher privileges in the system
 
-### 👨‍💼 Coordinator
+### Coordinator
 - Can **propose workshops**
 - Can **manage their own workshops**
 - Cannot accept workshops
@@ -190,7 +190,7 @@ profile.save()
 group, _ = Group.objects.get_or_create(name='instructor')
 user.groups.add(group)
 
-print("Instructor created successfully ✅")
+print("Instructor created successfully")
 ```
 
 
@@ -213,7 +213,7 @@ profile, _ = Profile.objects.get_or_create(user=user)
 profile.is_email_verified = True
 profile.save()
 
-print("Coordinator created successfully ✅")
+print("Coordinator created successfully")
 ```
 
 Go and Login using the user_id and password
