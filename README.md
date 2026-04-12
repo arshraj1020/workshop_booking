@@ -49,6 +49,30 @@ The original booking system was functional but barebones. The aim here was to ma
 * Clear Call-To-Actions provided
 * Form design has been improved
 
+## 🔄 UI Comparison: Old vs New
+
+Below is a side-by-side comparison of the previous UI and the redesigned UI to highlight improvements in design, usability, and user experience.
+
+---
+
+### 📸 Visual Comparison
+
+| Old UI | New UI |
+|--------|--------|
+| Old_ui/WhatsApp Image 2026-04-12 at 16.06.03.jpeg| New UI 1 |
+| Old_ui/WhatsApp Image 2026-04-12 at 16.06.15.jpegOld UI 2 | New UI 2 |
+| Old_ui/WhatsApp Image 2026-04-12 at 16.19.15.jpeg | New UI 3 |
+| Old_ui/WhatsApp Image 2026-04-12 at 16.20.11.jpeg | New UI 4 |
+| Old_ui/WhatsApp Image 2026-04-12 at 16.20.43.jpeg| New UI 5 |
+
+---
+
+### 🎯 Improvements Observed
+
+### Note
+
+All screenshots were captured from locally running instances of both versions of the project. The redesign focuses on improving usability, visual clarity, and overall user experience.
+
 ## 🖥 Desktop UI Preview
 
 |  |  |  |  |
