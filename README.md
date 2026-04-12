@@ -141,14 +141,14 @@ This system supports two types of users:
 - Cannot accept workshops
 
 ---
-## ⚙️ Setup Instructions
+## ⚙️ Setup Instructions(Error may come during execution please follow all commands)
 
 ```bash
 git clone https://github.com/your-username/workshop_booking.git
 cd workshop_booking
 python -m venv venv
-source venv/bin/activate   # Mac/Linux
 venv\Scripts\activate      # Windows
+source venv/bin/activate   # Mac/Linux
 pip install -r requirements.txt
 rmdir /s /q venv
 py -3.9 -m venv venv
