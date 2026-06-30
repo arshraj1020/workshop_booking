@@ -1,19 +1,22 @@
-# Python version
-# Use Python 3.9.x
+# ----------------------------------------
+# Python Version
+# Recommended: Python 3.11 or 3.12
+# ----------------------------------------
 
-Django==3.0.7
-python-decouple==3.3
+# Django
+Django>=5.0,<6.0
+python-decouple>=3.8
 
-# Core dependencies (fixed compatible versions)
-pandas==1.5.3
-numpy==1.23.5
+# Core Scientific Libraries
+numpy>=1.26.4
+pandas>=2.2.2
 
-# Django related
+# Django Extensions
 django-recurrence==1.11.1
 
-# Utilities
-pyaml==23.9.7
-coverage==7.2.7
+# Image Processing
+Pillow>=10.3.0
 
-# Image handling (IMPORTANT)
-Pillow==9.5.0
+# Utilities
+PyYAML>=6.0.2
+coverage>=7.6.0
